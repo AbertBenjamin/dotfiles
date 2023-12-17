@@ -1,0 +1,106 @@
+
+
+# Only start a new tmux session if one does not already exist
+ #if [ -z "$TMUX" ]; then
+     ## Check if a session named 'default' already exists
+     #SESSION_EXISTS=$(tmux list-sessions | grep default)
+     #if [ -z "$SESSION_EXISTS" ]; then
+         ## Start a new tmux session named 'default'
+         #tmux new-session -s default
+     #else
+         ## Attach to existing tmux session named 'default'
+         #tmux attach-session -t default
+     #fi
+ #fi
+
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+export DISPLAY=:0
+export LIBGL_ALWAYS_INDIRECT=1
+
+
+setopt autocd extendedglob nomatch menucomplete
+setopt interactive_comments
+stty stop undef
+zle_highlight=('paste:none')
+
+unsetopt BEEP
+
+# completions
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+
+
+# aliases
+alias vi="nvim"
+alias h="history -10"
+alias k="kubectl"
+alias la="ls -a"
+alias c="clear"
+
+bindkey -v
+export KEYTIMEOUT=1
+# vi-mode
+# export VI_MODE_SET_CURSOR=true
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
+# prompt
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' formats 'on %F{red}%b%f '
+precmd () { 
+		vcs_info
+}
+
+setopt prompt_subst
+export LC_ALL=en_US.UTF-8
+background_color=Blue
+foreground_color=White
+
+PROMPT='%B%F{gray}%K{}%n@%m%k%f%b %F{blue}%1~%f ${vcs_info_msg_0_} 
+> '
+
+# function
+source "$ZDOTDIR/zsh-functions"
+
+# normal files to source
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-aliases"
+zsh_add_file "zsh-prompt"
+
+# plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_completion "esc/conda-zsh-completion" 
+
+export TERM="xterm-256color"
+export LANG="de.DE.UTF-8"
+export LC_COLLATE="C.UTF-8"
+
+export DISPLAY=192.168.0.26:0.0
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+[[ -s "/home/benjamin/.sdkman/bin/sdkman-init.sh" ]] && source "/home/benjamin/.sdkman/bin/sdkman-init.sh"
+
