@@ -1,3 +1,21 @@
-require "benjamin.vimrc"
-require "benjamin.plugins"
-require "benjamin.plugin_config"
+require "vimrc"
+
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+local opts = {}
+
+require("lazy").setup("plugins", opts)
+
