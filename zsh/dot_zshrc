@@ -1,2 +1,0 @@
-source $ZDOTDIR/zshrc
-source /home/benjamin/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
