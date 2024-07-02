@@ -72,8 +72,8 @@ nnoremap gD :action GotoTypeDeclaration<CR>
 nnoremap <leader>enter:action ImportModule<CR>
 
 " next/prev tab
-nnoremap <C-l> :tabn<CR>'x
-nnoremap <C-h> :tabp<CR>'x
+nnoremap <C-l> :tabn'x<CR>
+nnoremap <C-h> :tabp'x<CR>
 map <leader>s :vsp<CR>
 
 " set sneak
