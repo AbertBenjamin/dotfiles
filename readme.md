@@ -1,6 +1,6 @@
 
 ```bash
-git clone https://github.com/AbertBenjamin/dotfiles ~/dotfiles`
+git clone https://github.com/AbertBenjamin/dotfiles ~/dotfiles
 ```
 
 ```bash
