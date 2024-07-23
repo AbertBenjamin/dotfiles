@@ -123,7 +123,6 @@ nf() {
 }
 export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true
-bindkey -v
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 autoload -U compinit; compinit
