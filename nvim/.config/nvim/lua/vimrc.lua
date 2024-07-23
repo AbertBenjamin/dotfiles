@@ -6,7 +6,7 @@ vim.opt.backspace = '2'
 vim.opt.swapfile = false
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.termguicolors = true 
+vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.clipboard = unnamedplus
 vim.g.qs_higlight_on_keys = {'f','F','t','T'}
@@ -28,4 +28,5 @@ vim.keymap.set('i', '(', '()<Esc>ha', opts)
 vim.keymap.set('i', '"', '""<Esc>ha', opts)
 vim.keymap.set('i', "'", "''<Esc>ha", opts)
 vim.keymap.set('i', "`", "``<Esc>ha", opts)
+vim.keymap.set('n', "n", 'nzz', opts)
 
