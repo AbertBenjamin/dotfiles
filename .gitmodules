@@ -44,5 +44,8 @@
   path = zsh/.config/zsh/plugins/zsh-vi-mode
   url = https://github.com/jeffreytse/zsh-vi-mode
 
+[submodule "zsh/.config/zsh/plugins/zsh-history-substring-search"]
+  path = zsh/.config/zsh/plugins/zsh-vi-mode
+  url = https://github.com/zsh-users/zsh-history-substring-search
 
 
