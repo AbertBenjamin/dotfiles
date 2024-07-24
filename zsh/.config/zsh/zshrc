@@ -128,6 +128,18 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 autoload -U compinit; compinit
 source $HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
+#history
+HISTFILE=$HOME/.zhistory
+SAVEHIST=1000
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
+
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
+
+
 # prompt
 
 autoload -Uz vcs_info
@@ -161,6 +173,7 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "Aloxaf/fzf-tab"
 zsh_add_plugin "jeffreytse/zsh-vi-mode"
+zsh_add_plugin "zsh-users/zsh-history-substring-search"
 zsh_add_completion "esc/conda-zsh-completion" 
 # bindkey -v
 
