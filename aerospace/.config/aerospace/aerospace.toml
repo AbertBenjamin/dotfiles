@@ -15,33 +15,45 @@ after-startup-command = [
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-if.app-name-regex-substring = ''
-if.window-title-regex-substring = ''
+# if.app-name-regex-substring = ''
+# if.window-title-regex-substring = ''
 run = ['layout tiling', 'move-node-to-workspace 1']  # The callback itself
 
 [[on-window-detected]]
-if.app-id = 'com.jetbrains.intelliJ'
-if.app-name-regex-substring = ''
-if.window-title-regex-substring = ''
+# if.app-id = 'com.jetbrains.intelliJ'
+if.app-name-regex-substring = 'intelliJ'
+if.window-title-regex-substring = 'IDEA'
 run = ['layout tiling', 'move-node-to-workspace 2']  # The callback itself
  
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
-if.app-name-regex-substring = ''
-if.window-title-regex-substring = ''
+# if.app-name-regex-substring = ''
+# if.window-title-regex-substring = ''
 run = ['layout tiling', 'move-node-to-workspace 3']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-if.app-name-regex-substring = ''
-if.window-title-regex-substring = ''
+# if.app-name-regex-substring = ''
+# if.window-title-regex-substring = ''
 run = ['layout tiling', 'move-node-to-workspace 4']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
-if.app-name-regex-substring = ''
-if.window-title-regex-substring = ''
+# if.app-name-regex-substring = ''
+# if.window-title-regex-substring = ''
 run = ['layout tiling', 'move-node-to-workspace 4']  # The callback itself
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+# if.app-name-regex-substring = ''
+# if.window-title-regex-substring = ''
+run = ['layout tiling', 'move-node-to-workspace 4']  # The callback itself
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+# if.app-name-regex-substring = ''
+# if.window-title-regex-substring = ''
+run = ['layout tiling', 'move-node-to-workspace 6']  # The callback itself
 
 [mode.main.binding]
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
