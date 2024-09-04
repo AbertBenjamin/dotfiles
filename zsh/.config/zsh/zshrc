@@ -1,49 +1,8 @@
-echo "Sourcing ~/.config/zsh/zshrc"
 #export ZDOTDIR = "~/.config/zsh"
-
-# # Only start a new tmux session if one does not already exist
-# if [ -z "$TMUX" ]; then
-#     # Check if a session named 'default' already exists
-#     SESSION_EXISTS=$(tmux list-sessions | grep default)
-#     if [ -z "$SESSION_EXISTS" ]; then
-#         # Start a new tmux session named 'default'
-#         tmux new-session -s default
-#     else
-#         # Attach to existing tmux session named 'default'
-#         tmux attach-session -t default
-#     fi
-# fi
-
-
- #is_tmux_directory() {
-   #local target_dirs=("frikort-sak" "frikort-vedtak" "project3")
-   #local current_dir
-   #current_dir=$(pwd)
- #
-   #for dir in "${target_dirs[@]}"; do
-     #if [[ $current_dir == *"$dir"/* ]]; then
-       #return 0
-     #fi
-   #done
- #
-   #return 1
- #}
 
 # Get the session name based on the current directory
 session_name_prefix="intellij"
 session_name="${session_name_prefix}-$(basename "$PWD")"
-
- ## Check if the current directory requires a tmux session
- #if command -v tmux >/dev/null 2>&1 && [[ -z "$TMUX" ]] && is_tmux_directory; then
-   ## Check if a session with the same name already exists
-   #if tmux has-session -t "$session_name" >/dev/null 2>&1; then
-     ## Attach to the existing tmux session
-     #tmux attach-session -t "$session_name"
-   #else
-     ## Start a new tmux session for the current directory
-     #tmux new-session -s "$session_name"
-   #fi
- #fi
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -57,6 +16,7 @@ function zle-keymap-select {
     echo -ne '\e[5 q'
   fi
 }
+
 zle -N zle-keymap-select
  zle-line-init() {
      zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
@@ -80,7 +40,7 @@ unsetopt BEEP
 __git_files () { 
     _wanted files expl 'local files' _files     
 }
-autoload -Uz compinit
+autoload -Uz compinit && compinit
 source <(kubectl completion zsh)
 zstyle ':completion:*' menu select
 __git_files () { 
@@ -105,7 +65,7 @@ _git_add_complete() {
 }
 
 # Register the custom completion function for 'git-add'
-#compdef _git_add_complete git-add
+# compdef _git_add_complete git-add
 
 # aliases
 alias vi="nvim"
