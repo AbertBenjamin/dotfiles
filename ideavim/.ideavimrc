@@ -89,6 +89,12 @@ Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'machakann/vim-highlightedyank'
+Plug 'houl/repmo-vim'
+"noremap <expr> h repmo#SelfKey('h', 'l')|sunmap h
+"noremap <expr> l repmo#SelfKey('l', 'h')|sunmap l
+" repeat the last [count]motion:
+:map <expr> <Space> repmo#LastKey('')|sunmap <Space>
+:map <expr> <BS>    repmo#LastRevKey('')|sunmap <BS>
 
 " Define a custom text object for Kotlin functions
 function! KotlinFunctionTextObject(type)
