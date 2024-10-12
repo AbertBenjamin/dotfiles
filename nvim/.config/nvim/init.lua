@@ -1,4 +1,5 @@
 require "vimrc"
+vim = vim
 
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 
