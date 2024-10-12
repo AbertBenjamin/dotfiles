@@ -2,7 +2,6 @@ require "vimrc"
 
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 
-
 -- Create a new augroup named "highlight_yank"
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
 
@@ -10,7 +9,7 @@ local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { cle
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = highlight_yank_group,
     callback = function()
-        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 1000 })
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
     end,
     pattern = "*",
 })
