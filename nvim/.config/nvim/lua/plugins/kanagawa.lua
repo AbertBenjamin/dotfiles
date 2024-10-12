@@ -3,8 +3,8 @@ return {
   config = function()
     require('kanagawa').load("wave")
     require('kanagawa').setup({
-      transparent = false,
-
+      transparent = true,
+      globalStatus = false
     })
   end
 }
