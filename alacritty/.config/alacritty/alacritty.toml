@@ -1,10 +1,10 @@
 import = [
-  "~/dotfiles/alacritty/.config/alacritty/catppuccin-mocha.toml"
+ "~/dotfiles/alacritty/.config/alacritty/base16-alacritty/colors/base16-default-dark-256"
 ]
 
 live_config_reload = true
 
-
+[mouse]
 
 [font]
 size = 20

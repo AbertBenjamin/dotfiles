@@ -22,7 +22,7 @@ run = ['layout tiling', 'move-node-to-workspace 1']  # The callback itself
 [[on-window-detected]]
 # if.app-id = 'com.jetbrains.intelliJ'
 if.app-name-regex-substring = 'intelliJ'
-if.window-title-regex-substring = 'IDEA'
+# if.window-title-regex-substring = 'IDEA'
 run = ['layout tiling', 'move-node-to-workspace 2']  # The callback itself
  
 [[on-window-detected]]
