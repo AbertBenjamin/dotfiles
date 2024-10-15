@@ -99,13 +99,20 @@ setopt hist_verify
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+function tmux_hook() {
+  if [[ -z ${TMUX} ]]; then
+    return
+  fi
+  tmux set-option -gq "@tmux_kubecontext_kubeconfig_#{pane_id}-#{session_id}-#{window_id}" "${KUBECONFIG}"
+}
+add-zsh-hook precmd tmux_hook
 
 # prompt
-
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' formats 'on %F{red}%b%f '
 precmd () { 
+  tmux_hook
   tmux refresh-client -S
   vcs_info
   if git diff-index --quiet HEAD -->> /dev/null 2>&1; then

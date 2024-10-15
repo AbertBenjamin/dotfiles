@@ -4,8 +4,7 @@ return {
   config = function()
     require("lualine").setup({
       -- options = {
-      --   theme = 'm/.config/nvim/lua/plugins/lualine.lua
-      --   base16'
+      --   theme = 'base16'
       -- }
     })
   end,
