@@ -106,6 +106,7 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' formats 'on %F{red}%b%f '
 precmd () { 
+  tmux refresh-client -S
   vcs_info
   if git diff-index --quiet HEAD -->> /dev/null 2>&1; then
     zstyle ':vcs_info:*' formats 'on %F{red}%b%f '
