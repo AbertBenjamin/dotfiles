@@ -99,6 +99,7 @@ setopt hist_verify
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+autoload -Uz add-zsh-hook
 function tmux_hook() {
   if [[ -z ${TMUX} ]]; then
     return
