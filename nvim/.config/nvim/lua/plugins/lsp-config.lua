@@ -9,7 +9,27 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "kotlin_language_server", "eslint" },
+        ensure_installed = {
+          "java-language-server",
+          "jdtls",
+          "bash-language-server",
+          "docker-compose-language-service",
+          "dockerfile-language-server",
+          "eslint-lsp",
+          "eslint_d",
+          "gh",
+          "jq",
+          "json-lsp",
+          "kotlin-language-server",
+          "ktlint",
+          "lemminx",
+          "lua-language-server",
+          "stylelint",
+          "stylua",
+          "typescript-language-server",
+          "yaml-language-server",
+          "yq",
+        },
       })
     end,
   },
