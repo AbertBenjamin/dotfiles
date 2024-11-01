@@ -2,7 +2,7 @@
 
 enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = false
-accordion-padding = 0
+accordion-padding = 5
 start-at-login = true
 after-login-command = [
 
