@@ -31,3 +31,15 @@ vim.keymap.set('i', "`", "``<Esc>ha", opts)
 vim.keymap.set('n', "n", 'nzz', opts)
 
 vim.keymap.set('n', '<leader>a', ':BlameToggle<CR>', opts)
+
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = true,
+    severity_sort = true,
+    float = {
+        border = "rounded",
+        source = "always",
+    },
+})

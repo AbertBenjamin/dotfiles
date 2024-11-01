@@ -30,18 +30,40 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
       local lspconfig = require("lspconfig")
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+
+      local on_attach = function(client, bufnr)
+        local opts = { buffer = bufnr, noremap = true, silent = true }
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+      end
 
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
       lspconfig.kotlin_language_server.setup({
         capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          kotlin = {
+            codegen = { enabled = true },
+            compiler = { jvm = { target = "21" } },
+            completion = { snippets = { enabled = true }, smart = true },
+            diagnostics = { enabled = true, level = "Hint", debounceTime = 250 },
+            indexing = { enabled = true }
+          }
+        },
+        root_dir = function(fname)
+          return lspconfig.util.root_pattern(
+            'settings.gradle', 'settings.gradle.kts',
+            'build.gradle', 'build.gradle.kts',
+            '.git'
+          )(fname) or vim.fn.getcwd()
+        end
       })
       lspconfig.ts_ls.setup({
         capabilities = capabilities,
@@ -83,20 +105,71 @@ return {
             vim.fn["vsnip#anonymous"](args.body) -- Use vsnip as snippet engine
           end,
         },
+
         mapping = cmp.mapping.preset.insert({
           ["<C-d>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<Right>"] = cmp.mapping.complete(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept current completion
+          ["<Tab>"] = cmp.mapping(
+            function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              else
+                fallback()
+              end
+            end, { "i", "s" }
+          ),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
         }),
+
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            -- Ensure LSP and buffer sources appear before others
+            function(entry1, entry2)
+              local order = { nvim_lsp = 1, buffer = 2, path = 3 }
+              local source1 = entry1.source.name
+              local source2 = entry2.source.name
+              if order[source1] and order[source2] then
+                return order[source1] < order[source2]
+              end
+            end,
+          },
+        },
+
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },  -- LSP source
-          { name = "vsnip" },     -- Snippet source
-          { name = "buffer" },    -- Buffer source
-          { name = "path" },      -- Path source
+          { name = "nvim_lsp", priority = 1000 },  -- LSP source
+          { name = "vsnip" , priority = 750 },     -- Snippet source
+          { name = "buffer", priority = 500 },    -- Buffer source
+          { name = "path", priority = 250 },      -- Path source
         }),
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered()
+        },
+        formatting = {
+          format = function(entry, vim_item)
+            vim_item.menu = ({
+              nvim_lsp = "[LSP]",
+              vsnip = "[Snippet]",
+              buffer = "[Buffer]",
+              path = "[Path]",
+            })[entry.source.name]
+            return vim_item
+          end
+        },
         completion = {
-          autocomplete = false
+          completeopt = "menu,menuone,noinsert",
         },
         performance = {
           debounce = 100,
