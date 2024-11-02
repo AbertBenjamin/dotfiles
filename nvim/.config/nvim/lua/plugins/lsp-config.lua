@@ -1,9 +1,24 @@
 return {
   {
     "williamboman/mason.nvim",
+    opts = {
+      ui = {
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',}
+      }
+    }
+    -- config = function()
+    --   require("mason").setup()
+    -- end,
+  },
+  {
+    'nvim-java/nvim-java',
+    dependencies = { "williamboman/mason.nvim" },
     config = function()
-      require("mason").setup()
-    end,
+      require('java').setup({})
+    end
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -11,7 +26,6 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "java_language_server",
-          "jdtls",
           "bashls",
           "docker_compose_language_service",
           "dockerls",
@@ -44,7 +58,12 @@ return {
 
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
+        on_attach = on_attach
       })
+      lspconfig.java.setup({
+        jdk = { auto_install = false }
+      })
+      lspconfig.jdtls.setup({})
       lspconfig.kotlin_language_server.setup({
         capabilities = capabilities,
         on_attach = on_attach,
@@ -67,7 +86,11 @@ return {
       })
       lspconfig.ts_ls.setup({
         capabilities = capabilities,
+        on_attach = on_attach
       })
+      lspconfig.bashls.setup(
+        { capabilities = capabilities, on_attach = on_attach }
+      )
     end,
   },
   {
@@ -81,6 +104,8 @@ return {
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.ktlint,
+          null_ls.builtins.formatting.google_java_format,
           require("none-ls.diagnostics.eslint")
         },
       })
