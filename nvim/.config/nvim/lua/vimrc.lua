@@ -22,9 +22,9 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('i', '{', '{}<Esc>ha', opts)
-vim.keymap.set('i', '[', '[]<Esc>ha', opts)
-vim.keymap.set('i', '(', '()<Esc>ha', opts)
+vim.keymap.set('i', '{', '{ }<Esc>ha', opts)
+vim.keymap.set('i', '[', '[ ]<Esc>ha', opts)
+vim.keymap.set('i', '(', '( )<Esc>ha', opts)
 vim.keymap.set('i', '"', '""<Esc>ha', opts)
 vim.keymap.set('i', "'", "''<Esc>ha", opts)
 vim.keymap.set('i', "`", "``<Esc>ha", opts)
