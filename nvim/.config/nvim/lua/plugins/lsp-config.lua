@@ -8,10 +8,8 @@ return {
           package_pending = '➜',
           package_uninstalled = '✗',}
       }
-    }
-    -- config = function()
-    --   require("mason").setup()
-    -- end,
+    },
+    ensure_installed = { "ktlint" }
   },
   {
     'nvim-java/nvim-java',
@@ -45,6 +43,13 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
+      local opts = { silent = true }
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
+      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
 
       local on_attach = function(client, bufnr)
         local opts = { buffer = bufnr, noremap = true, silent = true }
@@ -63,10 +68,9 @@ return {
       lspconfig.java.setup({
         jdk = { auto_install = false }
       })
-      lspconfig.jdtls.setup({})
       lspconfig.kotlin_language_server.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
+        -- on_attach = on_attach,
         settings = {
           kotlin = {
             codegen = { enabled = true },
@@ -78,9 +82,7 @@ return {
         },
         root_dir = function(fname)
           return lspconfig.util.root_pattern(
-            'settings.gradle', 'settings.gradle.kts',
-            'build.gradle', 'build.gradle.kts',
-            '.git'
+            '.git', '.idea', 'pom.xml'
           )(fname) or vim.fn.getcwd()
         end
       })
@@ -88,6 +90,11 @@ return {
         capabilities = capabilities,
         on_attach = on_attach
       })
+      -- lspconfig.eslint.setup({
+      --   capabilities = capabilities,
+      --   on_attach = on_attach
+      --
+      -- })
       lspconfig.bashls.setup(
         { capabilities = capabilities, on_attach = on_attach }
       )

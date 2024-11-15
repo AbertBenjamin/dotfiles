@@ -64,6 +64,7 @@ nnoremap <leader>r :action Vcs.RollbackChangedLines<CR>
 nnoremap <leader>fg :action FindInPath<CR>
 nnoremap <leader>ff :action GotoFile<CR>
 nnoremap <leader>rg :action GoToClass<CR>
+nnoremap <leader>ca :action ShowIntentionAction<CR>
 nnoremap <leader>o :action GotoFile<CR>
 nnoremap <D-S-t> :action ReopenClosedTab<CR>
 nnoremap <C-j> :action EditorScrollLeft<CR>
@@ -83,10 +84,11 @@ nnoremap <S-h> :tabp'x<CR>
 map <leader>s :vsp<CR>
 
 " set sneak
+set peekaboo
 nmap <a-s> <Plug>(sneak-s)
 set NERDTree
-map <c-c>   :NERDTreeToggle<CR>
-map <c-n>   :NERDTreeClose<CR>
+map <c-n>   :NERDTreeToggle<CR>
+map <c-c>   :NERDTreeClose<CR>
 
 set ideastrictmode
 
@@ -96,6 +98,7 @@ Plug 'tommcdo/vim-exchange'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'houl/repmo-vim'
+Plug 'junegunn/vim-peekaboo'
 
 "noremap <expr> h repmo#SelfKey('h', 'l')|sunmap h
 "noremap <expr> l repmo#SelfKey('l', 'h')|sunmap l

@@ -1,8 +1,12 @@
 #export ZDOTDIR = "~/.config/zsh"
+PATH="$PATH":"$HOME/.config/tmux/scripts/"
+bindkey -s '^f' "tmux-sessionizer\n"
+bindkey -r f run-shell "tmux neww ~/dotfiles/tmux/.config/tmux/scripts/tmux-sessionizer"
 
 # Get the session name based on the current directory
 session_name_prefix="intellij"
 session_name="${session_name_prefix}-$(basename "$PWD")"
+source <(fzf --zsh)
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -79,7 +83,7 @@ alias fzf="fzf --preview='cat {}'"
 # alias nf="nvim $(fzf --preview='cat {}')"
 nf() {
   local file
-  file=$(fzf --preview='cat {}') && [ -n "$file" ] && nvim "$file"
+  file=$(fzf --preview='bat {}') && [ -n "$file" ] && nvim "$file"
 }
 export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true
