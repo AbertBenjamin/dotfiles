@@ -3,10 +3,14 @@ PATH="$PATH":"$HOME/.config/tmux/scripts/"
 bindkey -s '^f' "tmux-sessionizer\n"
 bindkey -r f run-shell "tmux neww ~/dotfiles/tmux/.config/tmux/scripts/tmux-sessionizer"
 
+
+
 # Get the session name based on the current directory
 session_name_prefix="intellij"
 session_name="${session_name_prefix}-$(basename "$PWD")"
+
 source <(fzf --zsh)
+echo 'eval "$(direnv hook zsh)"'
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
