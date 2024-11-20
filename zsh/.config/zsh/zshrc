@@ -1,9 +1,6 @@
 #export ZDOTDIR = "~/.config/zsh"
 PATH="$PATH":"$HOME/.config/tmux/scripts/"
-bindkey -s '^f' "tmux-sessionizer\n"
-bindkey -r f run-shell "tmux neww ~/dotfiles/tmux/.config/tmux/scripts/tmux-sessionizer"
-
-
+# bindkey -s '^f' "tmux-sessionizer\n"
 
 # Get the session name based on the current directory
 session_name_prefix="intellij"
