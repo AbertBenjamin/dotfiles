@@ -6,4 +6,4 @@ source $HOME/.config/zsh/plugins/conda-zsh-completion/conda-zsh-completion.plugi
 source $HOME/.config/zsh/plugins/fzf-tab/fzf-tab.zsh
 
 export JAVA_HOME=$HOME/.sdkman/candidates/java/current
-export JAVA_HOME=$HOME/.sdkman/candidates/java/current
+export MAVEN_HOME=$HOME/.sdkman/candidates/maven/current
