@@ -46,7 +46,7 @@ __git_files () {
     _wanted files expl 'local files' _files     
 }
 autoload -Uz compinit && compinit
-source <(kubectl completion zsh)
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 zstyle ':completion:*' menu select
 __git_files () { 
     _wanted files expl 'local files' _files     
