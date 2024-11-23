@@ -15,7 +15,7 @@ return {
     'nvim-java/nvim-java',
     dependencies = { "williamboman/mason.nvim" },
     config = function()
-      require('java').setup({})
+      require("java").setup({})
     end
   },
   {
@@ -51,21 +51,11 @@ return {
       vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
 
-      local on_attach = function(client, bufnr)
-        local opts = { buffer = bufnr, noremap = true, silent = true }
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-      end
-
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach
       })
-      lspconfig.java.setup({
+      lspconfig.java_language_server.setup({
         jdk = { auto_install = false }
       })
       lspconfig.kotlin_language_server.setup({
