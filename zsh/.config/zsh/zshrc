@@ -132,7 +132,7 @@ setopt prompt_subst
 
 #%n@%m
 PROMPT='%F{cyan}%1~%f ${vcs_info_msg_0_}
-> '
+ ➜ '
 
 
 source "$ZDOTDIR/zsh-functions"
