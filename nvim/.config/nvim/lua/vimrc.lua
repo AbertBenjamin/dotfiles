@@ -19,6 +19,8 @@ vim.opt.expandtab = true
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
+vim.opt.fillchars = { eob = " " }
+
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 local opts = { noremap = true, silent = true }
