@@ -68,7 +68,7 @@ return {
             completion = { snippets = { enabled = true }, smart = true },
             diagnostics = { enabled = true, level = "Hint", debounceTime = 250 },
             indexing = { enabled = true }
-          }
+          },
         },
         root_dir = function(fname)
           return lspconfig.util.root_pattern(

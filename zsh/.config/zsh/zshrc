@@ -6,6 +6,7 @@ PATH="$PATH":"$HOME/.config/tmux/scripts/"
 session_name_prefix="intellij"
 session_name="${session_name_prefix}-$(basename "$PWD")"
 
+source <(kubectl completion zsh)
 source <(fzf --zsh)
 eval "$(direnv hook zsh)"
 
