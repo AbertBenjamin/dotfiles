@@ -71,7 +71,7 @@ _git_add_complete() {
 }
 
 # Register the custom completion function for 'git-add'
-# compdef _git_add_complete git-add
+compdef _git_add_complete git-add
 
 # aliases
 alias vi="nvim"
@@ -89,7 +89,6 @@ nf() {
 }
 export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true
-autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 autoload -U compinit; compinit
 source $HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
