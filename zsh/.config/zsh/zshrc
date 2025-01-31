@@ -6,8 +6,7 @@ PATH="$PATH":"$HOME/.config/tmux/scripts/"
 session_name_prefix="intellij"
 session_name="${session_name_prefix}-$(basename "$PWD")"
 
-source <(kubectl completion zsh)
-source <(fzf --zsh)
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 eval "$(direnv hook zsh)"
 
 # Change cursor shape for different vi modes.
@@ -163,3 +162,4 @@ eval "$(zoxide init --cmd cd zsh)"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
