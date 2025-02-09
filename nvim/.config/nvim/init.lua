@@ -2,6 +2,21 @@ require "vimrc"
 vim = vim
 
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+vim.keymap.set(
+  'n', "<leader>s",
+  function()
+    if not vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) then
+      vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
+    end
+  end, { desc = "Jump to next error" })
+
+vim.keymap.set(
+  'n', "<leader>S",
+  function()
+    if not vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) then
+      vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+    end
+end, { desc = "Jump to previous error" })
 
 -- Create a new augroup named "highlight_yank"
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
