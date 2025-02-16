@@ -18,6 +18,20 @@ vim.keymap.set(
     end
 end, { desc = "Jump to previous error" })
 
+-- Store the last jump position
+vim.keymap.set("n", "j", function()
+  if vim.v.count > 0 then vim.cmd("mark '") end
+  vim.cmd("normal! " .. vim.v.count1 .. "j")
+end, { silent = true })
+
+vim.keymap.set("n", "k", function()
+  if vim.v.count > 0 then vim.cmd("mark '") end
+  vim.cmd("normal! " .. vim.v.count1 .. "k")
+end, { silent = true })
+
+-- Pressing '' jumps back to the last marked position
+vim.keymap.set("n", "''", "''", { noremap = true, silent = true })
+
 -- Create a new augroup named "highlight_yank"
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
 
