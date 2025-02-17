@@ -92,6 +92,8 @@ map <c-c>   :NERDTreeClose<CR>
 
 set ideastrictmode
 
+set mini-ai
+Plug 'wellle/targets.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
@@ -99,6 +101,12 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'houl/repmo-vim'
 Plug 'junegunn/vim-peekaboo'
+
+" Set a mark ' before vertical movement with a count
+nnoremap <expr> j (v:count > 0 ? "m'".v:count."j" : "j")
+nnoremap <expr> k (v:count > 0 ? "m'".v:count."k" : "k")
+" '' to jump back to the last position before vertical movement
+nnoremap '' ''
 
 "noremap <expr> h repmo#SelfKey('h', 'l')|sunmap h
 "noremap <expr> l repmo#SelfKey('l', 'h')|sunmap l
