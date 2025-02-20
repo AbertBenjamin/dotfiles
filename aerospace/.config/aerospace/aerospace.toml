@@ -32,6 +32,12 @@ if.app-id = 'org.alacritty'
 run = ['layout tiling', 'move-node-to-workspace 3']  # The callback itself
 
 [[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+# if.app-name-regex-substring = 'Ghostty'
+# if.window-title-regex-substring = ''
+run = ['layout tiling', 'move-node-to-workspace 3']  # The callback itself
+
+[[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 # if.app-name-regex-substring = ''
 # if.window-title-regex-substring = ''
