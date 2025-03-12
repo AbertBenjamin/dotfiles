@@ -24,6 +24,13 @@ vim.keymap.set("n", "j", function()
   vim.cmd("normal! " .. vim.v.count1 .. "j")
 end, { silent = true })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>", { buffer = true, silent = true})
+  end
+})
+
 vim.keymap.set("n", "k", function()
   if vim.v.count > 0 then vim.cmd("mark '") end
   vim.cmd("normal! " .. vim.v.count1 .. "k")

@@ -11,13 +11,13 @@ return {
     },
     ensure_installed = { "ktlint" }
   },
-  {
-    'nvim-java/nvim-java',
-    dependencies = { "williamboman/mason.nvim" },
-    config = function()
-      require("java").setup({})
-    end
-  },
+  -- {
+  --   'nvim-java/nvim-java',
+  --   dependencies = { "williamboman/mason.nvim" },
+  --   config = function()
+  --     require("java").setup({})
+  --   end
+  -- },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
@@ -34,6 +34,7 @@ return {
           "lua_ls",
           "ts_ls",
           "yamlls",
+          "gopls"
         },
       })
     end,
@@ -51,6 +52,9 @@ return {
       vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
 
+      lspconfig.gopls.setup(
+        { capabilities = capabilities }
+      )
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach

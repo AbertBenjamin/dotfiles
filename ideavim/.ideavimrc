@@ -72,6 +72,7 @@ nnoremap <C-k> :action EditorScrollRight<CR>
 nmap g; :action VcsShowNextChangeMarker<CR>
 nmap g, :action VcsShowPrevChangeMarker<CR>
 nnoremap gD :action GotoTypeDeclaration<CR>
+nnoremap gr :action GotoDeclaration<CR>
 nnoremap <leader>enter :action ImportModule<CR>
 nnoremap <leader>rf :action RenameElement<CR>
 
