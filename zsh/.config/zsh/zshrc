@@ -6,7 +6,6 @@ autoload -Uz compinit && compinit
 session_name="${session_name_prefix}-$(basename "$PWD")"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-source /usr/share/bash-completion/completions/git
 eval "$(direnv hook zsh)"
 
 # Change cursor shape for different vi modes.
