@@ -1,12 +1,12 @@
 #export ZDOTDIR = "~/.config/zsh"
 PATH="$PATH":"$HOME/.config/tmux/scripts/"
 # bindkey -s '^f' "tmux-sessionizer\n"
+autoload -Uz compinit && compinit
 
-# Get the session name based on the current directory
-session_name_prefix="intellij"
 session_name="${session_name_prefix}-$(basename "$PWD")"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+source /usr/share/bash-completion/completions/git
 eval "$(direnv hook zsh)"
 
 # Change cursor shape for different vi modes.
@@ -45,7 +45,6 @@ unsetopt BEEP
 __git_files () { 
     _wanted files expl 'local files' _files     
 }
-autoload -Uz compinit && compinit
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 zstyle ':completion:*' menu select
 __git_files () { 
@@ -89,8 +88,6 @@ nf() {
 export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-autoload -U compinit; compinit
-source $HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
 #history
 HISTFILE=$HOME/.zhistory
@@ -161,5 +158,3 @@ eval "$(zoxide init --cmd cd zsh)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
