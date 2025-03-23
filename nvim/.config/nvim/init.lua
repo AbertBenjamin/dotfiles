@@ -1,6 +1,8 @@
 require "vimrc"
 vim = vim
+vim.o.splitright = true
 
+vim.keymap.set("n", "<leader>t", ":silent !tmux split-window -h<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 vim.keymap.set(
   'n', "<leader>s",
@@ -8,6 +10,7 @@ vim.keymap.set(
     if not vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) then
       vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
     end
+    vim.cmd("normal! zz")
   end, { desc = "Jump to next error" })
 
 vim.keymap.set(
@@ -16,6 +19,7 @@ vim.keymap.set(
     if not vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) then
       vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
     end
+    vim.cmd("normal! zz")
 end, { desc = "Jump to previous error" })
 
 -- Store the last jump position
