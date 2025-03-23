@@ -40,11 +40,11 @@ return {
       })
 
       -- Option 4: disable all providers for all buffers
-      require('ufo').setup({
-        provider_selector = function(bufnr, filetype, buftype)
-          return ''
-        end
-      })
+      -- require('ufo').setup({
+      --   provider_selector = function(bufnr, filetype, buftype)
+      --     return ''
+      --   end
+      -- })
     end
   },
   {
