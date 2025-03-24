@@ -23,14 +23,14 @@ vim.opt.fillchars = { eob = " " }
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
-local opts = { noremap = true, silent = true }
-vim.keymap.set('i', '{', '{ }<Esc>ha', opts)
-vim.keymap.set('i', '[', '[ ]<Esc>ha', opts)
-vim.keymap.set('i', '(', '( )<Esc>ha', opts)
-vim.keymap.set('i', '"', '""<Esc>ha', opts)
-vim.keymap.set('i', "'", "''<Esc>ha", opts)
-vim.keymap.set('i', "`", "``<Esc>ha", opts)
-vim.keymap.set('n', "n", 'nzz', opts)
+-- local opts = { noremap = true, silent = true }
+-- vim.keymap.set('i', '{', '{ }<Esc>ha', opts)
+-- vim.keymap.set('i', '[', '[ ]<Esc>ha', opts)
+-- vim.keymap.set('i', '(', '( )<Esc>ha', opts)
+-- vim.keymap.set('i', '"', '""<Esc>ha', opts)
+-- vim.keymap.set('i', "'", "''<Esc>ha", opts)
+-- vim.keymap.set('i', "`", "``<Esc>ha", opts)
+-- vim.keymap.set('n', "n", 'nzz', opts)
 
 vim.keymap.set('n', '<leader>a', ':BlameToggle<CR>', opts)
 
