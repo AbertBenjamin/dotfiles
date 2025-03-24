@@ -30,7 +30,7 @@ vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 -- vim.keymap.set('i', '"', '""<Esc>ha', opts)
 -- vim.keymap.set('i', "'", "''<Esc>ha", opts)
 -- vim.keymap.set('i', "`", "``<Esc>ha", opts)
--- vim.keymap.set('n', "n", 'nzz', opts)
+vim.keymap.set('n', "n", 'nzz', opts)
 
 vim.keymap.set('n', '<leader>a', ':BlameToggle<CR>', opts)
 
