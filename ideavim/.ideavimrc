@@ -39,6 +39,7 @@ let g:qs_primary_color = '#ff6666'
 let g:qs_secondary_color = '#a2cd5a'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
+nnoremap Y y$
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap <C-f> <C-f>zz
