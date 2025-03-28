@@ -8,7 +8,7 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.termguicolors = true
 vim.opt.updatetime = 50
-vim.opt.clipboard = unnamedplus
+vim.opt.clipboard = 'unnamedplus'
 vim.opt.showmode = false
 vim.g.qs_higlight_on_keys = {'f','F','t','T'}
 
@@ -24,7 +24,7 @@ vim.opt.fillchars = { eob = " " }
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
--- local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true }
 -- vim.keymap.set('i', '{', '{ }<Esc>ha', opts)
 -- vim.keymap.set('i', '[', '[ ]<Esc>ha', opts)
 -- vim.keymap.set('i', '(', '( )<Esc>ha', opts)
