@@ -9,6 +9,7 @@ vim.opt.number = true
 vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.clipboard = unnamedplus
+vim.opt.showmode = false
 vim.g.qs_higlight_on_keys = {'f','F','t','T'}
 
 vim.opt.tabstop = 2
