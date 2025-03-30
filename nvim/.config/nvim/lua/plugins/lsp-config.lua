@@ -37,7 +37,6 @@ return {
 					"yamlls",
 					"gopls",
 					"nil_ls",
-					"stylua",
 				},
 			})
 		end,
