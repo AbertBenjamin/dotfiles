@@ -15,6 +15,12 @@ after-startup-command = [
 ]
 
 [[on-window-detected]]
+# if.app-id = 'org.mozilla.firefox'
+if.app-name-regex-substring = 'firefox'
+# if.window-title-regex-substring = ''
+run = ['layout tiling', 'move-node-to-workspace 1']  # The callback itself
+
+[[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 # if.app-name-regex-substring = ''
 # if.window-title-regex-substring = ''
