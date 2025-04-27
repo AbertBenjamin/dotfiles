@@ -79,6 +79,16 @@ alias k="kubectl"
 alias la="ls -a"
 alias c="clear -x"
 alias fzf="fzf --preview='cat {}'"
+
+alias gs="git status -s"
+alias gd="git diff"
+alias gc="git commit"
+alias ga="git add"
+alias pull="git pull"
+alias push="git push"
+alias gl="git log --oneline --graph"
+alias gb="git branch"
+alias g="git"
 # alias nf="nvim $(fzf --preview='cat {}')"
 nf() {
   local file
