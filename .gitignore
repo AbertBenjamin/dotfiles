@@ -1,6 +1,12 @@
 .zcompdump
 .zsh_history
 .zsh_session
-.lazy-lock.json
+*.lazy-lock.json
 *.log
+
+
+
+# ignore generated plugins
+**/lazy-lock.json
+**/plugins/
 
