@@ -11,10 +11,9 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.showmode = false
-vim.g.qs_higlight_on_keys = {'f','F','t','T'}
 
 vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.shiftwidth = 4
 vim.opt.shiftround = true
 vim.opt.expandtab = true
 
@@ -26,14 +25,7 @@ vim.opt.fillchars = { eob = " " }
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 local opts = { noremap = true, silent = true }
--- vim.keymap.set('i', '{', '{ }<Esc>ha', opts)
--- vim.keymap.set('i', '[', '[ ]<Esc>ha', opts)
--- vim.keymap.set('i', '(', '( )<Esc>ha', opts)
--- vim.keymap.set('i', '"', '""<Esc>ha', opts)
--- vim.keymap.set('i', "'", "''<Esc>ha", opts)
--- vim.keymap.set('i', "`", "``<Esc>ha", opts)
 vim.keymap.set('n', "n", 'nzz', opts)
-
 vim.keymap.set('n', '<leader>a', ':BlameToggle<CR>', opts)
 
 vim.diagnostic.config({
