@@ -1,4 +1,4 @@
-return 
+ return
 -- {
 --         "nickkadutskyi/jb.nvim",
 --         lazy = false,
@@ -13,13 +13,24 @@ return
 --     },
     {
         "xiantang/darcula-dark.nvim",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
         config = function()
+            -- setup must be called before loading
             require("darcula").setup({
-                transparent = true,
+                override = function(c)
+                    return {
+                        background = "#43464b",
+                        dark = "#21201E"
+                    }
+                end,
+                opt = {
+                    integrations = {
+                        telescope = false,
+                        lualine = true,
+                        lsp_semantics_token = true,
+                        nvim_cmp = true,
+                        dap_nvim = true,
+                    },
+                },
             })
-            vim.cmd.colorscheme("darcula-dark")
         end,
     }

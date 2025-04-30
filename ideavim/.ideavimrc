@@ -32,7 +32,7 @@ set visualbell
 set noerrorbell
 set number
 set relativenumber
-set clipboard += unnamedplus
+set clipboard += unnamed
 set clipboard += ideaput
 set quickscope
 let g:qs_primary_color = '#ff6666'

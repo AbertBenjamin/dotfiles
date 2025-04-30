@@ -1,4 +1,5 @@
 #export ZDOTDIR = "~/.config/zsh"
+export SUDO_EDITOR=nvim
 PATH="$PATH":"$HOME/.config/tmux/scripts/"
 # bindkey -s '^f' "tmux-sessionizer\n"
 autoload -Uz compinit && compinit

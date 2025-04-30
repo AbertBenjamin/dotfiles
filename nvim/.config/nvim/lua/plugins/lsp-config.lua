@@ -29,6 +29,7 @@ return {
     opts = {
       keymap = {
         ["<Right>"] = { "show", "fallback" },
+-- { function(cmp) cmp.show({ providers = { 'lsp', 'path', 'buffer' } }) end }
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
