@@ -8,5 +8,7 @@
 
 # ignore generated plugins
 **/lazy-lock.json
-**/plugins/
+**/zsh/plugins/
+**/tmux/plugins/
+
 
