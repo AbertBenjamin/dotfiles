@@ -29,7 +29,7 @@ return {
     opts = {
       keymap = {
         ["<Right>"] = { "show", "fallback" },
--- { function(cmp) cmp.show({ providers = { 'lsp', 'path', 'buffer' } }) end }
+        -- { function(cmp) cmp.show({ providers = { 'lsp', 'path', 'buffer' } }) end }
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
@@ -38,10 +38,13 @@ return {
         nerd_font_variant = 'mono'
       },
 
-      completion = { documentation = { auto_show = false } },
+      completion = {
+        documentation = { auto_show = false },
+        ghost_text = { enabled = true }
+      },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni' },
       },
 
       fuzzy = { implementation = "prefer_rust_with_warning" }
@@ -146,8 +149,8 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
       require("trouble").setup({
-        auto_open = false,           -- Do not auto-open trouble when errors are detected
-        auto_close = true,           -- Auto-close when the trouble list is empty
+        auto_open = false,   -- Do not auto-open trouble when errors are detected
+        auto_close = true,   -- Auto-close when the trouble list is empty
         use_diagnostic_signs = true, -- Use LSP diagnostic signs
       })
     end,
