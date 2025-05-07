@@ -3,6 +3,7 @@ vim.g.maplocalleader = ' '
 
 vim.opt.backspace = '2'
 vim.opt.cursorline = true
+vim.opt.colorcolumn = "80"
 
 vim.opt.swapfile = false
 vim.opt.relativenumber = true
