@@ -17,11 +17,10 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.shiftround = true
 vim.opt.expandtab = true
+vim.opt.fillchars = { eob = " " }
 
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-
-vim.opt.fillchars = { eob = " " }
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
@@ -36,7 +35,7 @@ vim.diagnostic.config({
     update_in_insert = true,
     severity_sort = true,
     float = {
-        border = "rounded",
+        -- border = "rounded",
         source = "always",
     },
 })
