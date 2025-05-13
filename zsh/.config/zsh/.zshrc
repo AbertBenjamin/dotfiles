@@ -7,6 +7,7 @@ source $HOME/.config/zsh/plugins/conda-zsh-completion/conda-zsh-completion.plugi
 source $HOME/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 source $HOME/.config/zsh/plugins/fzf-tab/fzf-tab.zsh
 
+export PATH="$HOME/go/bin:$PATH"
 export JAVA_HOME=$HOME/.sdkman/candidates/java/current
 export MAVEN_HOME=$HOME/.sdkman/candidates/maven/current
 export EDITOR="nvim"
