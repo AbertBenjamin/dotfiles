@@ -1,4 +1,5 @@
 require "vimrc"
+require "lsp"
 vim = vim
 vim.o.splitright = true
 

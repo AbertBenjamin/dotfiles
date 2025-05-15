@@ -42,14 +42,14 @@ vim.diagnostic.config({
 
 local servers = {
   "luals",
-  "go",
+  "gopls",
 }
 
 vim.lsp.enable("luals")
 vim.lsp.enable("gopls")
 vim.lsp.enable("bashls")
 vim.lsp.enable("dockerls")
-vim.lsp.enable("jsonls")
+vim.lsp.enable("json-lsp")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("nil_ls")
