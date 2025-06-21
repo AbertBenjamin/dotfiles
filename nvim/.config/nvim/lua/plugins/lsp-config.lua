@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ui = {
         icons = {
@@ -30,18 +30,6 @@ return {
       appearance = {
         nerd_font_variant = 'mono'
       },
-      config = function ()
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        require("blink.cmp").get_lsp_capabilities({}, false)
-        capabilities = vim.tbl_deep_extend("force", capabilities, {
-          textDocument = {
-            foldingRange = {
-              dynamicRegistration = false,
-              lineFoldingOnly = true
-            }
-          }
-        })
-      end,
       completion = {
         documentation = { auto_show = false },
         ghost_text = { enabled = true }
@@ -54,7 +42,7 @@ return {
     opts_extend = { "sources.default" }
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -64,7 +52,7 @@ return {
           "dockerls",
           "eslint",
           "jsonls",
-          "kotlin_language_server",
+          "kotlin_lsp",
           "lemminx",
           "lua_ls",
           "ts_ls",
@@ -86,30 +74,32 @@ return {
         dockerls = {},
         eslint = {},
         jsonls = {},
-        kotlin_language_server = {},
         lemminx = {},
         lua_ls = {},
         ts_ls = {},
         yamlls = {},
         gopls = {},
         nil_ls = {},
-      }
+        kotlin_lsp = {},
+      },
     },
     config = function(_, opts)
-      -- local lspconfig = require("lspconfig")
-      -- for server, config in pairs(opts.servers) do
-      --   config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-      --   lspconfig[server].setup(config)
-      -- end
+      local lspconfig = require("lspconfig")
 
+      for server, config in pairs(opts.servers) do
+        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+        lspconfig[server].setup(config)
+      end
 
       local opts = { silent = true }
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+      vim.keymap.set({ "i" }, "<M-CR>", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
+
     end
   },
   {
