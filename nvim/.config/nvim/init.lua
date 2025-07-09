@@ -2,6 +2,7 @@ require "vimrc"
 vim = vim
 vim.o.splitright = true
 
+vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", {})
 vim.keymap.set("n", "<leader>t", ":silent !tmux split-window -h<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 vim.keymap.set(

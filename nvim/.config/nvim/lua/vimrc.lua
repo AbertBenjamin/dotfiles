@@ -5,6 +5,9 @@ vim.opt.backspace = '2'
 vim.opt.cursorline = true
 vim.opt.colorcolumn = "80"
 
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+
 vim.opt.swapfile = false
 vim.opt.relativenumber = true
 vim.opt.number = true
@@ -39,6 +42,9 @@ vim.diagnostic.config({
         source = "always",
     },
 })
+
+
+-- vim.lsp.enable("kotlin-lsp")
 
 
 
