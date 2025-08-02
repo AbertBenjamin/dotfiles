@@ -1,48 +1,7 @@
 require "vimrc"
-vim = vim
-vim.o.splitright = true
-
-vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", {})
-vim.keymap.set("n", "<leader>t", ":silent !tmux split-window -h<CR>", { noremap = true, silent = true })
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-vim.keymap.set(
-  'n', "<leader>s",
-  function()
-    if not vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) then
-      vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
-    end
-    vim.cmd("normal! zz")
-  end, { desc = "Jump to next error" })
-
-vim.keymap.set(
-  'n', "<leader>S",
-  function()
-    if not vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) then
-      vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
-    end
-    vim.cmd("normal! zz")
-end, { desc = "Jump to previous error" })
-
--- Store the last jump position
-vim.keymap.set("n", "j", function()
-  if vim.v.count > 0 then vim.cmd("mark '") end
-  vim.cmd("normal! " .. vim.v.count1 .. "j")
-end, { silent = true })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "qf",
-  callback = function()
-    vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>", { buffer = true, silent = true})
-  end
-})
-
-vim.keymap.set("n", "k", function()
-  if vim.v.count > 0 then vim.cmd("mark '") end
-  vim.cmd("normal! " .. vim.v.count1 .. "k")
-end, { silent = true })
-
--- Pressing '' jumps back to the last marked position
-vim.keymap.set("n", "''", "''", { noremap = true, silent = true })
+require "keymap.keymap"
+vim.opt.rtp:prepend(vim.fn.expand("~/colorscheme.nvim"))
+require("colorscheme").setup()
 
 -- Create a new augroup named "highlight_yank"
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
@@ -54,6 +13,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
     end,
     pattern = "*",
+})
+
+-- close qf-list when pressing enter on an entry
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>", { buffer = true, silent = true})
+  end
 })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

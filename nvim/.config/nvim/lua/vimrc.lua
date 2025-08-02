@@ -4,6 +4,10 @@ vim.g.maplocalleader = ' '
 vim.opt.backspace = '2'
 vim.opt.cursorline = true
 vim.opt.colorcolumn = "80"
+vim.opt.winborder = "rounded"
+vim.opt.equalalways = true
+
+vim.opt.splitright = true
 
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
@@ -25,12 +29,6 @@ vim.opt.fillchars = { eob = " " }
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
-
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', "n", 'nzz', opts)
-vim.keymap.set('n', '<leader>a', ':BlameToggle<CR>', opts)
-
 vim.diagnostic.config({
     virtual_text = true,
     signs = true,
@@ -38,13 +36,8 @@ vim.diagnostic.config({
     update_in_insert = true,
     severity_sort = true,
     float = {
-        -- border = "rounded",
+        border = "rounded",
         source = "always",
     },
 })
-
-
--- vim.lsp.enable("kotlin-lsp")
-
-
 
