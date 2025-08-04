@@ -60,7 +60,7 @@ run = ['layout tiling', 'move-node-to-workspace 4']  # The callback itself
 if.app-id = 'com.spotify.client'
 # if.app-name-regex-substring = ''
 # if.window-title-regex-substring = ''
-run = ['layout floating', 'move-node-to-workspace 6']  # The callback itself
+run = ['layout floating', 'move-node-to-workspace 5']  # The callback itself
 
 [[on-window-detected]]
 # if.app-id = 'com.microsoft.teams'

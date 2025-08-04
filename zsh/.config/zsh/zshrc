@@ -99,6 +99,16 @@ nf() {
   local file
   file=$(fzf --preview='bat {}') && [ -n "$file" ] && nvim "$file"
 }
+
+cdd() {
+  local dir
+  dir=$(fd -t d | fzf --prompt="Directory: " --height=50% --border)
+  [[ -n $dir ]] && cd "$dir"
+}
+
+
+
+
 export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
