@@ -32,7 +32,7 @@ set visualbell
 set noerrorbell
 set number
 set relativenumber
-set clipboard += unnamed
+set clipboard = unnamedplus
 set clipboard += ideaput
 set quickscope
 let g:qs_primary_color = '#ff6666'
@@ -50,6 +50,7 @@ nnoremap # #zz
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
+nnoremap <leader>w :action SaveAll<CR>
 nnoremap <leader>dd :action ActivateDebugToolWindow<CR>
 nnoremap <leader>rr :action ActivateRunToolWindow<CR>
 nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
@@ -85,8 +86,8 @@ nnoremap <S-k> :action QuickJavaDoc<CR>
 "nnoremap <S-j> :action ShowErrorDescription<CR>
 
 " next/prev tab
-nnoremap <S-l> :tabn'x<CR>
-nnoremap <S-h> :tabp'x<CR>
+" nnoremap <S-l> :tabn'x<CR>
+" nnoremap <S-h> :tabp'x<CR>
 map <leader>s :vsp<CR>
 
 " set sneak
