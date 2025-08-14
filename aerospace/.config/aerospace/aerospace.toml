@@ -125,6 +125,9 @@ alt-shift-6 = 'move-node-to-workspace 6'
 # alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
 
+alt-n = 'move-node-to-monitor next'
+alt-p = 'move-node-to-monitor prev'
+
 alt-shift-r = 'reload-config'
 
 alt-r = 'mode resize'
