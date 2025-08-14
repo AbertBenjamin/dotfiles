@@ -1,7 +1,5 @@
 require "vimrc"
 require "keymap.keymap"
--- vim.opt.rtp:prepend(vim.fn.expand("~/colorscheme.nvim"))
--- require("colorscheme").setup()
 
 -- Create a new augroup named "highlight_yank"
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
