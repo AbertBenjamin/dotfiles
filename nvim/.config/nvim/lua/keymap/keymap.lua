@@ -11,10 +11,6 @@ keymap('n', '<leader>a', ':BlameToggle<CR>', opts)
 keymap("n", "<C-n>", ":Neotree toggle<CR>", opts)
 keymap("n", "<leader>t", ":silent !tmux split-window -h<CR>", opts)
 
-
--- directory
-keymap('n', '<C-n>', ':NvimTreeFindFileToggle<CR>', { silent = true })
-
 -- buffers 
 keymap('n', "<leader>n", ":bnext<CR>", opts)
 keymap('n', "<leader>p", ":bprev<CR>", opts)
