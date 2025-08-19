@@ -1,9 +1,11 @@
 #export ZDOTDIR = "~/.config/zsh"
+echo "changing path for tmux"
 PATH="$PATH":"$HOME/.config/tmux/scripts/"
+echo "changed path for tmux"
 # bindkey -s '^f' "tmux-sessionizer\n"
 autoload -Uz compinit && compinit
 
-session_name="${session_name_prefix}-$(basename "$PWD")"
+#session_name="${session_name_prefix}-$(basename "$PWD")"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 eval "$(direnv hook zsh)"
@@ -29,7 +31,7 @@ function zle-keymap-select {
 # echo -ne '\e[5 q' # Use beam shape cursor on startup.
 # preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-export DISPLAY=:0
+#export DISPLAY=:0
 export LIBGL_ALWAYS_INDIRECT=1
 
 unsetopt share_history
@@ -115,7 +117,6 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 #history
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000
-setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
@@ -136,9 +137,10 @@ add-zsh-hook precmd tmux_hook
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' formats 'on %F{red}%b%f '
+
 precmd () { 
   tmux_hook
-  tmux refresh-client -S
+  [[ -n "$TMUX" ]] && tmux refresh-client -S 2>/dev/null
   vcs_info
   if git diff-index --quiet HEAD -->> /dev/null 2>&1; then
     zstyle ':vcs_info:*' formats 'on %F{red}%b%f '
@@ -171,7 +173,7 @@ zsh_add_plugin "zsh-users/zsh-history-substring-search"
 zsh_add_completion "esc/conda-zsh-completion" 
 # bindkey -v
 
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 
 export PATH="$PATH/Applications/IntelliJ IDEA.app/Contents/MacOS"
 # function

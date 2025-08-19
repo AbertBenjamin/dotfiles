@@ -57,8 +57,7 @@ return {
           "lua_ls",
           "ts_ls",
           "yamlls",
-          "gopls",
-          "nil_ls",
+          "gopls"
         },
       })
     end,
@@ -79,8 +78,7 @@ return {
         ts_ls = {},
         yamlls = {},
         gopls = {},
-        nil_ls = {},
-        kotlin_lsp = {},
+        kotlin_lsp = {}
       },
     },
     config = function(_, opts)
