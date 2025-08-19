@@ -1,0 +1,101 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 50,
+  "spacing": 4,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "battery",
+    "tray"
+  ],
+  "sway/mode": {
+    "format": "{}"
+  },
+
+    "sway/window": {
+      "format": "{title}"
+    },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\uf06e",
+      "deactivated": "\uf070"
+    }
+  },
+
+    "cpu": {
+      "interval": 10,
+      "format": "CPU: {usage}%"
+    },
+
+    "battery": {
+      "bat": "BAT0",
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 5
+      },
+      "format": "BAT0: {capacity}%",
+      "format-charging": "BAT0: {capacity}% (charging)",
+      "format-plugged": "BAT0: {capacity}% (plugged)"
+    },
+
+    "clock": {
+      "format": "{:%Y/%m/%d %H:%M}"
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
