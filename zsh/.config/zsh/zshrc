@@ -1,11 +1,6 @@
 #export ZDOTDIR = "~/.config/zsh"
-echo "changing path for tmux"
 PATH="$PATH":"$HOME/.config/tmux/scripts/"
-echo "changed path for tmux"
-# bindkey -s '^f' "tmux-sessionizer\n"
 autoload -Uz compinit && compinit
-
-#session_name="${session_name_prefix}-$(basename "$PWD")"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 eval "$(direnv hook zsh)"
@@ -23,21 +18,8 @@ function zle-keymap-select {
   fi
 }
 
-# zle -N zle-keymap-select
-#  zle-line-init() {
-#      zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-#      echo -ne "\e[5 q"
-#  }
-# echo -ne '\e[5 q' # Use beam shape cursor on startup.
-# preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-#export DISPLAY=:0
 export LIBGL_ALWAYS_INDIRECT=1
 
-unsetopt share_history
-setopt inc_append_history       # write to the history file incrementally
-setopt hist_ignore_dups         # don't record duplicate commands
-setopt hist_save_no_dups        # don't save duplicate entries to the history file
 
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
@@ -120,6 +102,9 @@ SAVEHIST=1000
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
+unsetopt share_history
+setopt inc_append_history       # write to the history file incrementally
+setopt hist_save_no_dups        # don't save duplicate entries to the history file
 
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
@@ -171,7 +156,6 @@ zsh_add_plugin "Aloxaf/fzf-tab"
 zsh_add_plugin "jeffreytse/zsh-vi-mode"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
 zsh_add_completion "esc/conda-zsh-completion" 
-# bindkey -v
 
 #export TERM="xterm-256color"
 
@@ -180,13 +164,6 @@ export PATH="$PATH/Applications/IntelliJ IDEA.app/Contents/MacOS"
 source "$ZDOTDIR/zsh-functions"
 
 eval "$(zoxide init --cmd cd zsh)"
-
-# autoload -Uz zle
-# function yank-command-line() {
-#   print -rn -- $BUFFER | pbcopy
-# }
-# zle -N yank-command-line
-# bindkey -M vicmd 'Y' yank-command-line
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
