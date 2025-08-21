@@ -54,10 +54,10 @@ return {
           "jsonls",
           "kotlin_lsp",
           "lemminx",
-          "lua_ls",
           "ts_ls",
           "yamlls",
-          "gopls"
+          "gopls",
+          "lua_ls"
         },
       })
     end,
@@ -74,11 +74,10 @@ return {
         eslint = {},
         jsonls = {},
         lemminx = {},
-        lua_ls = {},
         ts_ls = {},
         yamlls = {},
         gopls = {},
-        kotlin_lsp = {}
+        lua_ls = {}
       },
     },
     config = function(_, opts)
