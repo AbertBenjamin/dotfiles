@@ -6,22 +6,6 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "Send space only when key is released",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "spacebar"
-                },
-                "to_after_key_up": [
-                  {
-                    "key_code": "spacebar"
-                  }
-                ]
-              }
-            ]
-          },
-          {
             "description": "CAPSLOCK + hjkl to arrow keys (Post ESCAPE if press CAPSLOCK alone)",
             "manipulators": [
               {
