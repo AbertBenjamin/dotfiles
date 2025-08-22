@@ -66,7 +66,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias k="kubectl"
 alias ls=eza
-alias find=fd
+# alias find="fd"
 alias cat=bat
 alias grep=rg
 alias cd=z
@@ -173,3 +173,4 @@ eval "$(zoxide init --cmd cd zsh)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
