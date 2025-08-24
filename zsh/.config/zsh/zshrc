@@ -69,7 +69,7 @@ alias ls=eza
 # alias find="fd"
 alias cat=bat
 alias grep=rg
-alias cd=z
+# alias cd="zoxide"
 alias la="ls -a"
 alias c="clear -x"
 alias fzf="fzf --preview='cat {}'"
@@ -93,9 +93,6 @@ cdd() {
   dir=$(fd -t d | fzf --prompt="Directory: " --height=50% --border)
   [[ -n $dir ]] && cd "$dir"
 }
-
-
-
 
 export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true

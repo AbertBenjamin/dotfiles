@@ -11,6 +11,14 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
+font pango:JetBrainsMono Nerd Font 11
+
+bindsym $mod+c exec wl-copy
+bindsym $mod+v exec wl-paste
+# bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+
+
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -24,7 +32,7 @@ set $menu wmenu-run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg "/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png" fill
 #
 # Example configuration:
 #
@@ -148,7 +156,7 @@ input type:keyboard {
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
     bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
