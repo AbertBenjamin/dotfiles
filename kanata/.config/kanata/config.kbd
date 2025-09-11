@@ -1,0 +1,23 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps
+  h j k l
+)
+
+(deflayer base
+  @caps-nav
+  h j k l
+)
+
+(deflayer nav
+  _
+  left down up right
+)
+
+(defalias
+  caps-nav (tap-hold 200 200 esc (layer-toggle nav))
+)
+
