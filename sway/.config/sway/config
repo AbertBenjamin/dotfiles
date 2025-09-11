@@ -16,8 +16,7 @@ font pango:JetBrainsMono Nerd Font 11
 
 bindsym $mod+c exec wl-copy
 bindsym $mod+v exec wl-paste
-# bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
-
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
 
 # Home row direction keys, like vim
 set $left h
@@ -25,7 +24,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term ghostty
 # Your preferred application launcher
 set $menu wmenu-run
 
