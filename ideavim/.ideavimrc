@@ -82,6 +82,8 @@ nnoremap gr :action GotoDeclaration<CR>
 nnoremap <leader>enter :action ImportModule<CR>
 nnoremap <leader>rf :action RenameElement<CR>
 
+nnoremap <S-Esc> :action Terminal.Escape
+
 nnoremap <S-k> :action QuickJavaDoc<CR>
 "nnoremap <S-j> :action ShowErrorDescription<CR>
 
