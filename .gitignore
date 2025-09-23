@@ -5,6 +5,7 @@
 *.log
 
 
+karabiner/.config/karabiner/automatic_backups/*
 
 # ignore generated plugins
 **/lazy-lock.json
