@@ -41,3 +41,17 @@ vim.diagnostic.config({
     },
 })
 
+vim.lsp.enable('java_language_server')
+vim.lsp.enable('bashls')
+vim.lsp.enable('docker_compose_language_service')
+vim.lsp.enable('dockerls')
+vim.lsp.enable('eslint')
+vim.lsp.enable('jsonls')
+vim.lsp.enable('lemminx')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('yamlls')
+vim.lsp.enable('gopls')
+-- vim.lsp.enable('luals')
+
+
+
