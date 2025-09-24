@@ -1,0 +1,24 @@
+[user]
+	name = AbertBenjamin
+	email = benjamin.ostvang.abert@decisive.no
+
+[color]
+  ui = auto
+
+[push]
+  autoSetupRemote = true
+
+[pull]
+  rebase = false
+
+[core]
+  editor = nvim
+  pager = delta
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+[diff]
+  tool = nvimdiff
+
+[status]
+  short = true
+  branch = true
