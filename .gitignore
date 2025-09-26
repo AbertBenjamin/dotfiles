@@ -4,6 +4,8 @@
 *.lazy-lock.json
 *.log
 
+**/zsh/.zcompdump*
+
 
 karabiner/.config/karabiner/automatic_backups/*
 
