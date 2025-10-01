@@ -51,7 +51,7 @@ vim.lsp.enable('lemminx')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('yamlls')
 vim.lsp.enable('gopls')
--- vim.lsp.enable('luals')
+vim.lsp.enable('luals')
 
 
 
