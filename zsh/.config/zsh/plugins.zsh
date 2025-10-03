@@ -1,0 +1,6 @@
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-history-substring-search"
+zsh_add_plugin "Aloxaf/fzf-tab"
+zsh_add_plugin "jeffreytse/zsh-vi-mode"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_completion "esc/conda-zsh-completion" 

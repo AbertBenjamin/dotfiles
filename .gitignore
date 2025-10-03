@@ -5,6 +5,7 @@
 *.log
 
 **/zsh/.zcompdump*
+.DS_Store
 
 
 karabiner/.config/karabiner/automatic_backups/*

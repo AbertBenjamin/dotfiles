@@ -1,25 +1,7 @@
-#export ZDOTDIR = "~/.config/zsh"
-PATH="$PATH":"$HOME/.config/tmux/scripts/"
+PATH="$PATH:$HOME/.config/tmux/scripts/"
 autoload -Uz compinit && compinit
 
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 eval "$(direnv hook zsh)"
-
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-
-export LIBGL_ALWAYS_INDIRECT=1
-
 
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
@@ -29,73 +11,11 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 # completions
-__git_files () { 
-    _wanted files expl 'local files' _files     
-}
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 zstyle ':completion:*' menu select
-__git_files () { 
-    _wanted files expl 'local files' _files     
-}
-# Custom completion function for 'git-add' with partial filename completion
-_git_add_complete() {
-  # Retrieve the current word being completed
-  local current_word=${words[CURRENT]}
 
-  # Check if the current word starts with '**/'
-  if [[ $current_word == '**/'* ]]; then
-    # Remove the '**/' prefix
-    local partial_filename=${current_word#**/}
-
-    # Call the built-in _files completion function with the partial filename
-    _files "$@" $partial_filename
-  else
-    # Call the built-in _git completion function for 'git-add'
-    _git
-  fi
-}
-
-# Register the custom completion function for 'git-add'
-compdef _git_add_complete git-add
-
-# aliases
-alias vi="nvim"
-alias h="history -10"
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias k="kubectl"
-alias ls=eza
-# alias find="fd"
-alias cat=bat
-alias grep=rg
-# alias cd="zoxide"
-alias la="ls -a"
-alias c="clear -x"
-alias fzf="fzf --preview='cat {}'"
-
-alias gs="git status -s"
-alias gd="git diff"
-alias gc="git commit"
-alias ga="git add"
-alias pull="git pull"
-alias push="git push"
-alias gl="git log --oneline --graph"
-alias gb="git branch"
-alias g="git"
-nf() {
-  local file
-  file=$(fzf --preview='bat {}') && [ -n "$file" ] && nvim "$file"
-}
-
-cdd() {
-  local dir
-  dir=$(fd -t d | fzf --prompt="Directory: " --height=50% --border)
-  [[ -n $dir ]] && cd "$dir"
-}
 
 export KEYTIMEOUT=1
-export VI_MODE_SET_CURSOR=true
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 #history
@@ -120,50 +40,14 @@ function tmux_hook() {
 }
 add-zsh-hook precmd tmux_hook
 
-# prompt
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' formats 'on %F{red}%b%f '
-
-precmd () { 
-  tmux_hook
-  [[ -n "$TMUX" ]] && tmux refresh-client -S 2>/dev/null
-  vcs_info
-  if git diff-index --quiet HEAD -->> /dev/null 2>&1; then
-    zstyle ':vcs_info:*' formats 'on %F{red}%b%f '
-  else 
-    zstyle ':vcs_info:*' formats  'on %F{red}%b*%f '
-  fi
-}
-
 setopt prompt_subst
 
-#%n@%m
-PROMPT='%F{cyan}%1~%f ${vcs_info_msg_0_}
- ➜ '
-
-
-source "$ZDOTDIR/zsh-functions"
+source "$ZDOTDIR/functions.zsh"
 # normal files to source
-zsh_add_file "zsh-exports"
-zsh_add_file "zsh-vim-mode"
-zsh_add_file "zsh-aliases"
-zsh_add_file "zsh-prompt"
-
-# plugins
-zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-zsh_add_plugin "Aloxaf/fzf-tab"
-zsh_add_plugin "jeffreytse/zsh-vi-mode"
-zsh_add_plugin "zsh-users/zsh-history-substring-search"
-zsh_add_completion "esc/conda-zsh-completion" 
-
-#export TERM="xterm-256color"
-
-export PATH="$PATH/Applications/IntelliJ IDEA.app/Contents/MacOS"
-# function
-source "$ZDOTDIR/zsh-functions"
+zsh_add_file "exports.zsh"
+zsh_add_file "aliases.zsh"
+zsh_add_file "prompt.zsh"
+zsh_add_file "plugins.zsh"
 
 eval "$(zoxide init --cmd cd zsh)"
 
