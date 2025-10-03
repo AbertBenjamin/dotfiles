@@ -10,7 +10,7 @@ keymap('n', '<leader>w', ':w<CR>', opts)
 keymap('n', '<leader>a', ':BlameToggle<CR>', opts)
 -- keymap("n", "<C-n>", ":Neotree toggle<CR>", opts)
 keymap("n", "<C-n>", function()
-  require("fyler").open({ kind = "split_left_most"})
+  require("fyler").toggle({ kind = "split_left_most"})
 end , opts)
 keymap("n", "<leader>t", ":silent !tmux split-window -h<CR>", opts)
 
