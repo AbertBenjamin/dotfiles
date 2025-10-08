@@ -4,6 +4,7 @@ return {
   branch = "stable",
   opts = {
     close_on_select = false,
-    confirm_simple = false
+    confirm_simple = false,
+    default_explorer = true
   }
 }
