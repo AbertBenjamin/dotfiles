@@ -19,6 +19,9 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.showmode = false
+vim.opt.scrolloff = 5
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
