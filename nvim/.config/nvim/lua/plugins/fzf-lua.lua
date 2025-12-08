@@ -5,7 +5,7 @@ return {
   config = function()
     -- calling `setup` is optional for customization
     require("fzf-lua").setup({
-      vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", {}),
+      -- vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", {}),
       vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", {})
     })
   end
