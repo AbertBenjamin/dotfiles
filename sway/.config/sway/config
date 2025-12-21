@@ -9,6 +9,17 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 ### Variables
 #
+
+default_border none
+hide_edge_borders --i3 none
+default_floating_border none
+
+gaps inner 0
+gaps outer 0
+
+# titlebar_padding 0
+# titlebar_border_thickness 0
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
