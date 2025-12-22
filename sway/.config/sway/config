@@ -42,7 +42,8 @@ set $menu wmenu-run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg "/home/benjamin/Downloads/4rvdz1vrezif1.png" fill
+# output * bg "/home/benjamin/Downloads/4rvdz1vrezif1.png" fill
+output * bg "/usr/share/sddm/themes/silent/backgrounds/default.jpg" fill
 #
 # Example configuration:
 #
