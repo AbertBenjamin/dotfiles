@@ -17,10 +17,23 @@
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [diff]
-  tool = nvimdiff
+  tool = codediff
+
+[difftool "codediff"]
+  cmd = nvim -f -c "CodeDiff file \"$LOCAL\" \"$REMOTE\""
+
+[difftool]
+  prompt = false
 
 [merge]
-  tool = nvimdiff
+  tool = codediff
+
+[mergetool "codediff"]
+  cmd = nvim -f -c "CodeDiff merge" "$MERGED"
+
+[mergetool]
+  keepBackup = false
+  prompt = false
 
 [status]
   short = true
