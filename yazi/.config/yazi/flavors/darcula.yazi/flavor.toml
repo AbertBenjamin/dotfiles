@@ -1,0 +1,150 @@
+# Darcula-inspired neutral theme for Yazi
+# Matches darculasolid.nvim colorscheme
+
+[manager]
+cwd = { fg = "#A9B7C6" }
+
+hovered         = { reversed = true }
+preview_hovered = { underline = true }
+
+find_keyword  = { fg = "#CC7832", bold = true }
+find_position = { fg = "#6A8759", bg = "reset", bold = true }
+
+marker_copied   = { fg = "#6A8759", bg = "#6A8759" }
+marker_cut      = { fg = "#CC7832", bg = "#CC7832" }
+marker_marked   = { fg = "#FFC66D", bg = "#FFC66D" }
+marker_selected = { fg = "#6897BB", bg = "#6897BB" }
+
+tab_active   = { reversed = true }
+tab_inactive = {}
+tab_width    = 1
+
+border_symbol = "│"
+border_style  = { fg = "#555555" }
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#555555", bg = "#555555" }
+
+mode_normal = { bg = "#6897BB", fg = "#2B2B2B", bold = true }
+mode_select = { bg = "#FFC66D", fg = "#2B2B2B", bold = true }
+mode_unset  = { bg = "#6A8759", fg = "#2B2B2B", bold = true }
+
+progress_label  = { fg = "#A9B7C6", bold = true }
+progress_normal = { fg = "#6897BB" }
+progress_error  = { fg = "#FF6B68" }
+
+permissions_t = { fg = "#6A8759" }
+permissions_r = { fg = "#FFC66D" }
+permissions_w = { fg = "#CC7832" }
+permissions_x = { fg = "#6897BB" }
+permissions_s = { fg = "#555555" }
+
+[select]
+border   = { fg = "#6897BB" }
+active   = { fg = "#FFC66D", bold = true }
+inactive = {}
+
+[input]
+border   = { fg = "#6897BB" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[completion]
+border   = { fg = "#6897BB" }
+active   = { reversed = true }
+inactive = {}
+
+[tasks]
+border  = { fg = "#6897BB" }
+title   = {}
+hovered = { fg = "#FFC66D", underline = true }
+
+[which]
+cols            = 3
+mask            = { bg = "#313335" }
+cand            = { fg = "#A9B7C6" }
+rest            = { fg = "#808080" }
+desc            = { fg = "#FFC66D" }
+separator       = "  "
+separator_style = { fg = "#555555" }
+
+[help]
+on      = { fg = "#6A8759" }
+run     = { fg = "#FFC66D" }
+desc    = { fg = "#808080" }
+hovered = { reversed = true }
+footer  = { fg = "#555555", bg = "#2B2B2B" }
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#FFC66D" },
+  { mime = "{audio,video}/*", fg = "#CC7832" },
+  { mime = "application/*zip", fg = "#FF6B68" },
+  { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#FF6B68" },
+  
+  { name = "*", is = "orphan", fg = "#FF6B68" },
+  { name = "*", is = "exec", fg = "#6A8759" },
+  
+  { name = "*/", fg = "#6897BB" }
+]
+
+[icons]
+"Desktop/"     = ""
+"Documents/"   = ""
+"Downloads/"   = ""
+"Pictures/"    = ""
+"Music/"       = ""
+"Movies/"      = ""
+"Videos/"      = ""
+"Public/"      = ""
+"Library/"     = ""
+"Development/" = ""
+".config/"     = ""
+
+"*.sh"   = ""
+"*.js"   = ""
+"*.ts"   = ""
+"*.py"   = ""
+"*.go"   = ""
+"*.rs"   = ""
+"*.java" = ""
+"*.c"    = ""
+"*.cpp"  = ""
+"*.h"    = ""
+"*.md"   = ""
+"*.txt"  = ""
+"*.json" = ""
+"*.toml" = ""
+"*.yaml" = ""
+"*.yml"  = ""
+"*.xml"  = ""
+"*.html" = ""
+"*.css"  = ""
+"*.lua"  = ""
+
+"*.zip" = ""
+"*.tar" = ""
+"*.gz"  = ""
+"*.7z"  = ""
+
+"*.jpg"  = ""
+"*.jpeg" = ""
+"*.png"  = ""
+"*.gif"  = ""
+"*.svg"  = ""
+
+"*.mp3" = ""
+"*.mp4" = ""
+"*.mkv" = ""
+
+".git/"           = ""
+".gitignore"      = ""
+".gitattributes"  = ""
+"Dockerfile"      = ""
+"docker-compose.yml" = ""
+"Makefile"        = ""
+"README.md"       = ""
+"LICENSE"         = ""
