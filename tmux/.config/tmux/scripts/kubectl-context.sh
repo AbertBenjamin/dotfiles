@@ -17,5 +17,5 @@ fi
 namespace=$(timeout 1 kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null || echo "")
 namespace="${namespace:-default}"
 
-# Display with kubernetes icon and colors matching darcula theme
+# Display with kubernetes icon
 echo "☸ ${context}:${namespace}"
