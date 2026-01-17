@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -euo pipefail
-
 # Simple kubectl context display for tmux status bar
 
 # Check if kubectl is available
@@ -9,9 +7,7 @@ if ! command -v kubectl &> /dev/null; then
 fi
 
 # Get current context with timeout to prevent hanging
-if ! context=$(timeout 1 kubectl config current-context 2>/dev/null); then
-    exit 0
-fi
+context=$(timeout 1 kubectl config current-context 2>/dev/null || echo "")
 
 if [ -z "$context" ]; then
     exit 0
