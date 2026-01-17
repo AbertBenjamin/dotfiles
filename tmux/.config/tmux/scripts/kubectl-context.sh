@@ -10,20 +10,6 @@ if ! command -v kubectl &> /dev/null; then
     exit 0
 fi
 
-# Determine stat command based on OS
-stat_cmd=""
-case $OSTYPE in
-  linux*)
-    stat_cmd='stat -c %Y'
-    ;;
-  darwin*)
-    stat_cmd='/usr/bin/stat -f %m'
-    ;;
-  *)
-    exit 0
-    ;;
-esac
-
 # Get KUBECONFIG or use default
 KUBECONFIG_PATH="${KUBECONFIG:-${HOME}/.kube/config}"
 
