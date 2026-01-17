@@ -1,25 +1,51 @@
 #!/usr/bin/env bash
 # Kubectl context display for tmux status bar
-# Based on tmux2k kubecontext.sh but simplified
+# Adapted from tmux2k kubecontext.sh
+
+# Initialize variables
+KUBECTL_BIN="kubectl"
 
 # Check if kubectl is available
 if ! command -v kubectl &> /dev/null; then
     exit 0
 fi
 
-# Get kubectl binary path (use default if not set)
-KUBECTL_BIN="kubectl"
+# Determine stat command based on OS
+stat_cmd=""
+case $OSTYPE in
+  linux*)
+    stat_cmd='stat -c %Y'
+    ;;
+  darwin*)
+    stat_cmd='/usr/bin/stat -f %m'
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+
+# Get KUBECONFIG or use default
+KUBECONFIG_PATH="${KUBECONFIG:-${HOME}/.kube/config}"
+
+# Check if kubeconfig exists
+if [[ ! -e "${KUBECONFIG_PATH}" ]]; then
+    exit 0
+fi
 
 # Get current context
-CONTEXT=$(${KUBECTL_BIN} config current-context 2>/dev/null || echo "")
-
-if [ -z "$CONTEXT" ] || [ "$CONTEXT" = "N/A" ]; then
+context="$(${KUBECTL_BIN} config current-context 2>/dev/null)"
+exitcode=$?
+if [[ -z "${context}" ]] || [[ $exitcode != 0 ]]; then
     exit 0
 fi
 
 # Get namespace
-NAMESPACE=$(${KUBECTL_BIN} config view --minify --output 'jsonpath={..namespace}' 2>/dev/null || echo "")
-NAMESPACE="${NAMESPACE:-default}"
+namespace="$(${KUBECTL_BIN} config view --minify --output 'jsonpath={..namespace}' 2>/dev/null)"
+exitcode=$?
+if [[ $exitcode != 0 ]]; then
+    exit 0
+fi
+namespace="${namespace:-default}"
 
 # Output with kubernetes symbol
-echo "☸ ${CONTEXT}:${NAMESPACE}"
+echo "☸ ${context}:${namespace}"
