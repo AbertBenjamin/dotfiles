@@ -1,21 +1,25 @@
 #!/usr/bin/env bash
-# Simple kubectl context display for tmux status bar
+# Kubectl context display for tmux status bar
+# Based on tmux2k kubecontext.sh but simplified
 
 # Check if kubectl is available
 if ! command -v kubectl &> /dev/null; then
     exit 0
 fi
 
-# Get current context with timeout to prevent hanging
-context=$(timeout 1 kubectl config current-context 2>/dev/null || echo "")
+# Get kubectl binary path (use default if not set)
+KUBECTL_BIN="kubectl"
 
-if [ -z "$context" ]; then
+# Get current context
+CONTEXT=$(${KUBECTL_BIN} config current-context 2>/dev/null || echo "")
+
+if [ -z "$CONTEXT" ] || [ "$CONTEXT" = "N/A" ]; then
     exit 0
 fi
 
-# Get namespace with timeout
-namespace=$(timeout 1 kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null || echo "")
-namespace="${namespace:-default}"
+# Get namespace
+NAMESPACE=$(${KUBECTL_BIN} config view --minify --output 'jsonpath={..namespace}' 2>/dev/null || echo "")
+NAMESPACE="${NAMESPACE:-default}"
 
-# Display with kubernetes icon
-echo "☸ ${context}:${namespace}"
+# Output with kubernetes symbol
+echo "☸ ${CONTEXT}:${NAMESPACE}"
