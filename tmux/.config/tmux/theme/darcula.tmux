@@ -15,7 +15,7 @@ set-option -g window-status-current-style "fg=#6897BB,bg=default,bold"
 set-option -g window-status-separator ""
 
 # Status bar content - kubectl on left, time/date on right
-set-option -g status-left "#[fg=#6897BB]#(bash ~/dotfiles/tmux/.config/tmux/scripts/kubectl-context.sh) "
+set-option -g status-left "#[fg=#6897BB]#(bash ~/.config/tmux/scripts/kubectl-context.sh) "
 set-option -g status-right "#[fg=#6A8759]%H:%M #[fg=#808080]| #[fg=#CC7832]%d %b "
 set-option -g status-left-length 100
 set-option -g status-right-length 50
