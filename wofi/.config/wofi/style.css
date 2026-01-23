@@ -1,77 +1,201 @@
-* {
-  font-family: "Jetbrains Mono Nerd Font", monospace;
-  font-size: 14px;
-}
 
+/* === macOS-inspired translucent dark theme to match your Waybar === */
+/* Fonts & base colors */
+@define-color bg        rgba(30, 30, 30, 0.72);
+@define-color bg-dim    rgba(255, 255, 255, 0.04);
+@define-color bg-hover  rgba(255, 255, 255, 0.08);
+@define-color bg-active rgba(255, 255, 255, 0.18);
+@define-color border    rgba(255, 255, 255, 0.35);
+@define-color text      #f5f5f7;
+@define-color text-dim  rgba(255, 255, 255, 0.65);
+@define-color accent    rgba(255, 255, 255, 0.9);
+@define-color urgent    rgba(255, 80, 80, 0.6);
+@define-color urgent-bg rgba(255, 80, 80, 0.25);
+@define-color warn      orange;
+
+/* Window container */
 window {
-  margin: 0px;
-  border: 2px solid #7c3aed;
-  background-color: #0f172a;
+  margin: 12px;
+  padding: 10px;
+  background-color: @bg;
+  color: @text;
+  border: 1px solid @border;
   border-radius: 12px;
+
+  /* Soft mac-style shadow */
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.35),
+    inset 0 1px rgba(255, 255, 255, 0.06);
+  font-family: Cantarell, "Noto Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
 }
 
+/* Input row */
 #input {
-  all: unset;
-  min-height: 36px;
-  padding: 4px 10px;
-  margin: 4px;
-  border: none;
-  color: #e2e8f0;
-  font-weight: bold;
-  background-color: #1e293b;
-  border-radius: 8px;
+  margin: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background-color: @bg-dim;
+  color: @text;
+  border: 1px solid transparent;
+  outline: none;
+  caret-color: @accent;
 }
 
 #input:focus {
-  border: 2px solid #7c3aed;
+  border: 1px solid @border;
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
-#inner-box {
-  margin: 4px;
-  border: 10px soldi transparent;
-  color: #e2e8f0;
-  font-weight: bold;
-  background-color: #0f172a;
+/* Placeholder (matches Waybar’s dim text) */
+#input > text.placeholder {
+  color: @text-dim;
 }
 
-#outer-box {
-  margin: 0px;
-  border: none;
-  border-radius: 12px;
-  background-color: #0f172a;
-}
-
-#scroll {
-  margin-top: 5px;
-  border: none;
-  border-radius: 12px;
-  margin-bottom: 5px;
-}
-
-#img:selected {
-  background-color: #7c3aed;
+/* Prompt (left glyph/label) */
+#prompt {
+  margin-left: 8px;
+  margin-top: 8px;
+  margin-bottom: 0;
+  padding: 6px 10px;
   border-radius: 8px;
-}
-
-#text:selected {
-  color: #ffffff;
-  margin: 0px 0px;
-  border: none;
-  border-radius: 12px;
-  background-color: #7c3aed;
-}
-
-#entry {
-  margin: 0px 0px;
-  border: none;
-  border-radius: 8px;
+  color: @text-dim;
   background-color: transparent;
 }
 
-#entry:selected {
-  margin: 0px 0px;
-  border: none;
+/* Message area (errors/info) */
+#message {
+  margin: 6px 8px 0 8px;
+  padding: 8px 10px;
   border-radius: 8px;
-  background-color: #7c3aed;
+  color: @text;
+  background-color: @bg-dim;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+#message.warning {
+  color: @warn;
+  border-color: rgba(255, 165, 0, 0.5);
+}
+
+#message.critical {
+  color: #ff5c5c;
+  border-color: rgba(255, 92, 92, 0.6);
+}
+
+/* Entries (list/grid items) */
+#entry {
+  padding: 8px 12px;
+  margin: 4px 8px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: @text-dim;
+  border: 1px solid transparent;
+
+  transition: all 120ms ease-out;
+}
+
+/* Hover subtle lift + brighter text */
+#entry:hover {
+  background-color: @bg-hover;
+  color: @accent;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3), inset 0 1px rgba(255,255,255,0.1);
+}
+
+/* Selected/active – mirrors Waybar focused workspace */
+#entry:selected {
+  background-color: @bg-active;
+  color: @text;
+  border: 1px solid @border;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px rgba(255, 255, 255, 0.25);
+}
+
+/* Entry text layout */
+#entry image {
+  margin-right: 8px;
+}
+
+#entry label {
+  color: inherit;
+  font-weight: 500;
+}
+
+/* Urgent-like styling (if used by modes) */
+#entry.urgent {
+  background-color: @urgent-bg;
+  color: @text;
+  border: 1px solid @urgent;
+}
+
+/* Scrollbar – sleek mac-like */
+scrollbar {
+  margin-right: 4px;
+  background: transparent;
+}
+
+scrollbar slider {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+scrollbar slider:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Vertical spacing between sections */
+#outer-box {
+  padding: 4px 2px 8px 2px;
+}
+
+#inner-box {
+  padding: 4px 0 4px 0;
+}
+
+#scroll {
+  margin-top: 6px;
+}
+
+/* Horizontal/vertical list padding parity */
+listview {
+  padding: 2px 0;
+  background: transparent;
+  border: 0;
+}
+
+/* Optional: mode switch row */
+#mode {
+  margin: 6px 8px 0 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: @text;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Power menu style (if you use a separate mode) */
+#entry.poweroff,
+#entry.reboot,
+#entry.logout,
+#entry.suspend {
+  /* keep subtle by default; hover/selected will handle emphasis */
+}
+
+/* Subtle separator line like Waybar’s top border */
+separator {
+  margin: 6px 8px;
+  min-height: 1px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 1px;
+}
+
+/* Fix for icons being too dim on some icon themes */
+image {
+  -gtk-icon-filter: brightness(1.0) contrast(1.0);
+}
+
 
