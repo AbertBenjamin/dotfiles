@@ -10,20 +10,21 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 ### Variables
 #
 
-default_border none
+default_border pixel 1
 hide_edge_borders --i3 none
-default_floating_border none
+default_floating_border pixel 1
+
+titlebar_padding 2
+titlebar_border_thickness 0
 
 gaps inner 0
 gaps outer 0
 
-# titlebar_padding 0
-# titlebar_border_thickness 0
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
-font pango:JetBrainsMono Nerd Font 11
+font pango:JetBrainsMono Nerd Font 8
 
 bindsym $mod+c exec wl-copy
 bindsym $mod+v exec wl-paste

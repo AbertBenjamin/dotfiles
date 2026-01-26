@@ -198,4 +198,9 @@ image {
   -gtk-icon-filter: brightness(1.0) contrast(1.0);
 }
 
+/* Fix for icons being too dim on some icon themes */
+image {
+  -gtk-icon-filter: brightness(1.0) contrast(1.0);
+}
+
 
