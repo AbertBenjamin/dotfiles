@@ -1,5 +1,4 @@
-
-local fn = require ("keymap.functions")
+local fn = require("keymap.functions")
 local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
@@ -10,11 +9,11 @@ keymap('n', '<leader>w', ':w<CR>', opts)
 keymap('n', '<leader>a', ':BlameToggle<CR>', opts)
 -- keymap("n", "<C-n>", ":Neotree toggle<CR>", opts)
 keymap("n", "<C-n>", function()
-  require("fyler").toggle({ kind = "split_left_most"})
-end , opts)
+  require("fyler").toggle({ kind = "split_left_most" })
+end, opts)
 keymap("n", "<leader>t", ":silent !tmux split-window -h<CR>", opts)
 
--- buffers 
+-- buffers
 keymap('n', "<leader>n", ":bnext<CR>", opts)
 keymap('n', "<leader>p", ":bprev<CR>", opts)
 
@@ -22,18 +21,20 @@ keymap('n', "<leader>p", ":bprev<CR>", opts)
 keymap('n', '<C-d>', '<C-d>zz', opts)
 keymap('n', '<C-u>', '<C-u>zz', opts)
 
--- clipboard 
-keymap({'n', 'v'}, '<leader>y', '"+y', opts)
-keymap({'n', 'v'}, '<leader>d', '"_d', opts)
+-- clipboard
+keymap({ 'n', 'v' }, '<leader>y', '"+y', opts)
+keymap({ 'n', 'v' }, '<leader>d', '"_d', opts)
 keymap('x', 'p', [["_dP]], opts)
 
 -- lsp keymap
 keymap("n", "K", vim.lsp.buf.hover, {})
 keymap("n", "gd", vim.lsp.buf.definition, {})
 keymap("n", "gD", vim.lsp.buf.declaration, {})
-keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 keymap("n", "gr", vim.lsp.buf.references, {})
 keymap("n", "<leader>rn", vim.lsp.buf.rename, {})
+
+keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
+keymap("n", "<leader>cf", vim.lsp.buf.format)
 
 -- Diagnostic navigation: jump to next error, or fallback to warning
 keymap('n', '<leader>s', function() fn.jump_diag("next") end, { desc = "Next Error/Warning", unpack(opts) })
@@ -45,4 +46,3 @@ keymap("n", "k", fn.smart_move("k"), opts)
 
 -- Jump back to last jump-mark
 keymap("n", "''", "''", opts)
-
