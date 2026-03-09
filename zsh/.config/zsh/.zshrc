@@ -4,6 +4,9 @@ zsh_add_file "exports.zsh"
 zsh_add_file "aliases.zsh"
 zsh_add_file "prompt.zsh"
 zsh_add_file "plugins.zsh"
+
+FPATH="$HOME/.docker/completions:$FPATH"
+
 autoload -Uz compinit && compinit
 
 eval "$(direnv hook zsh)"
