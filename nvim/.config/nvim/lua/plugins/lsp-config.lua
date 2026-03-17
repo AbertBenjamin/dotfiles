@@ -41,9 +41,16 @@ return {
     opts_extend = { "sources.default" }
   },
   {
+    "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
+  },
+  {
     "mason-org/mason-lspconfig.nvim",
     dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     config = function()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local lspconfig = require("lspconfig")
+
       require("mason-lspconfig").setup({
         ensure_installed = {
           "java_language_server",
@@ -59,14 +66,6 @@ return {
           "lua_ls"
         },
       })
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp", "mason-org/mason-lspconfig.nvim" },
-    config = function()
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-      local lspconfig = require("lspconfig")
 
       require("mason-lspconfig").setup_handlers({
         -- Default handler: set up every installed server with blink.cmp capabilities
