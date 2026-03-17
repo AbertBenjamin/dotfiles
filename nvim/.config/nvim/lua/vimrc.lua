@@ -44,22 +44,3 @@ vim.diagnostic.config({
     },
 })
 
-local lspservers = {
-  'java_language_server',
-  'bashls',
-  'docker_compose_language_service',
-  'dockerls',
-  'eslint',
-  'jsonls',
-  'lemminx',
-  'ts_ls',
-  'yamlls',
-  'gopls',
-  'luals',
-  'copilot'
-}
-
-for _, server in ipairs(lspservers) do
-  vim.lsp.enable(server)
-end
-
