@@ -10,7 +10,6 @@ return {
         },
       },
     },
-    ensure_installed = { "ktlint" },
   },
   {
     'saghen/blink.cmp',
@@ -43,6 +42,7 @@ return {
   },
   {
     "mason-org/mason-lspconfig.nvim",
+    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -52,7 +52,6 @@ return {
           "dockerls",
           "eslint",
           "jsonls",
-          "kotlin_lsp",
           "lemminx",
           "ts_ls",
           "yamlls",
@@ -64,7 +63,37 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp" }
+    dependencies = { "saghen/blink.cmp", "mason-org/mason-lspconfig.nvim" },
+    config = function()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local lspconfig = require("lspconfig")
+
+      require("mason-lspconfig").setup_handlers({
+        -- Default handler: set up every installed server with blink.cmp capabilities
+        function(server_name)
+          lspconfig[server_name].setup({ capabilities = capabilities })
+        end,
+
+        -- lua_ls: add Neovim-specific settings so "vim" global is recognised
+        ["lua_ls"] = function()
+          lspconfig.lua_ls.setup({
+            capabilities = capabilities,
+            settings = {
+              Lua = {
+                diagnostics = { globals = { "vim" } },
+                workspace = {
+                  library = vim.api.nvim_get_runtime_file("", true),
+                  checkThirdParty = false,
+                },
+              },
+            },
+          })
+        end,
+
+        -- kotlin_lsp is managed entirely by kotlin.nvim – skip it here
+        ["kotlin_lsp"] = function() end,
+      })
+    end,
   },
   {
     "nvimtools/none-ls.nvim",
