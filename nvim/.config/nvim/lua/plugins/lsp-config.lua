@@ -71,7 +71,7 @@ return {
 
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "java_language_server",
+          "jdtls",
           "bashls",
           "docker_compose_language_service",
           "dockerls",
@@ -136,3 +136,4 @@ return {
     end,
   },
 }
+
