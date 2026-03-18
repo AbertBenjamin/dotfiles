@@ -91,25 +91,6 @@ return {
     end,
   },
   {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvimtools/none-ls-extras.nvim",
-    },
-    config = function()
-      local null_ls = require("null-ls")
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.ktlint,
-          null_ls.builtins.formatting.google_java_format,
-          require("none-ls.diagnostics.eslint"),
-        },
-      })
-      vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-    end,
-  },
-  {
     "ray-x/lsp_signature.nvim",
     config = function()
       require("lsp_signature").setup({
