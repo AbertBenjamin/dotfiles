@@ -10,7 +10,6 @@ return {
         },
       },
     },
-    ensure_installed = { "ktlint" },
   },
   {
     'saghen/blink.cmp',
@@ -22,7 +21,6 @@ return {
     opts = {
       keymap = {
         ["<Right>"] = { "show", "fallback" },
-        -- { function(cmp) cmp.show({ providers = { 'lsp', 'path', 'buffer' } }) end }
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
@@ -42,8 +40,35 @@ return {
     opts_extend = { "sources.default" }
   },
   {
-    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
     config = function()
+      -- Pass blink.cmp capabilities to every LSP server (Neovim 0.11+ native API)
+      vim.lsp.config('*', {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
+
+      -- lua_ls: add Neovim-specific settings so "vim" global is recognised
+      vim.lsp.config('lua_ls', {
+        settings = {
+          Lua = {
+            diagnostics = { globals = { "vim" } },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+          },
+        },
+      })
+    end,
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local lspconfig = require("lspconfig")
+
       require("mason-lspconfig").setup({
         ensure_installed = {
           "java_language_server",
@@ -52,19 +77,18 @@ return {
           "dockerls",
           "eslint",
           "jsonls",
-          "kotlin_lsp",
           "lemminx",
           "ts_ls",
           "yamlls",
           "gopls",
           "lua_ls"
         },
+        -- kotlin_lsp is managed entirely by kotlin.nvim – skip auto-enable here
+        automatic_enable = {
+          exclude = { "kotlin_lsp" },
+        },
       })
     end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp" }
   },
   {
     "nvimtools/none-ls.nvim",
