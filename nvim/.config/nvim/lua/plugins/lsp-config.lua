@@ -98,9 +98,9 @@ return {
         hint_enable = true, -- Enable virtual text hints like in IntelliJ
         hint_prefix = "🐍 ", -- Optional: Custom hint icon
         handler_opts = {
-          border = "rounded", -- Rounded border for the popup
+          -- border = "rounded", -- Rounded border for the popup
         },
-        floating_window = true, -- Show signatures in a floating window
+        floating_window = true,                -- Show signatures in a floating window
         floating_window_above_cur_line = true, -- Align the floating window above the current line
       })
     end,
@@ -110,11 +110,10 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
       require("trouble").setup({
-        auto_open = false,   -- Do not auto-open trouble when errors are detected
-        auto_close = true,   -- Auto-close when the trouble list is empty
+        auto_open = false,           -- Do not auto-open trouble when errors are detected
+        auto_close = true,           -- Auto-close when the trouble list is empty
         use_diagnostic_signs = true, -- Use LSP diagnostic signs
       })
     end,
   },
 }
-
