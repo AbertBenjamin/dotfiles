@@ -13,7 +13,7 @@ alias la="ls -a"
 alias c="clear -x"
 alias fzf="fzf --preview='cat {}'"
 
-alias gs="git status -s"
+alias gs="git status"
 alias gd="git diff"
 alias gc="git commit"
 alias ga="git add"

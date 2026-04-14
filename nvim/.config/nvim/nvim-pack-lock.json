@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "plugins": {
     "Comment.nvim": {
       "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
@@ -235,4 +236,7 @@
       "src": "https://github.com/mbbill/undotree"
     }
   }
+=======
+  "plugins": []
+>>>>>>> 92a3124cd831609d2455e5724fa4dde0dabe3394
 }

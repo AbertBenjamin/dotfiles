@@ -38,3 +38,4 @@
 [status]
   short = true
   branch = true
+	showstash = true

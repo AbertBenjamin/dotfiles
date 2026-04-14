@@ -34,8 +34,8 @@ set number
 set relativenumber
 set ignorecase
 set smartcase
-set clipboard = unnamedplus
-set clipboard += ideaput
+set clipboard = unnamed
+""set clipboard = ideaput
 set quickscope
 let g:qs_primary_color = '#ff6666'
 let g:qs_secondary_color = '#a2cd5a'
