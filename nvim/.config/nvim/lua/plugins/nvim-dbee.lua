@@ -1,20 +1,16 @@
-return {
-  {
-    "vim-scripts/dbext.vim"
-  },
-  {
-    "kndndrj/nvim-dbee",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    build = function()
-      -- Install tries to automatically detect the install method.
-      -- if it fails, try calling it with one of these parameters:
-      --    "curl", "wget", "bitsadmin", "go"
+vim.pack.add({
+  "https://github.com/vim-scripts/dbext.vim",
+  "https://github.com/MunifTanjim/nui.nvim",
+  "https://github.com/kndndrj/nvim-dbee",
+})
+
+-- Build hook: install dbee binary on install/update
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    if ev.data.spec.name == 'nvim-dbee' and (ev.data.kind == 'install' or ev.data.kind == 'update') then
       require("dbee").install()
-    end,
-    config = function()
-      require("dbee").setup(--[[optional config]])
-    end,
-  }
-}
+    end
+  end,
+})
+
+require("dbee").setup()

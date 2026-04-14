@@ -1,12 +1,7 @@
-return {
-  "ibhagwan/fzf-lua",
-  -- optional for icon support
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
-    -- calling `setup` is optional for customization
-    require("fzf-lua").setup({
-      -- vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", {}),
-      vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", {})
-    })
-  end
-}
+vim.pack.add({
+  "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/nvim-tree/nvim-web-devicons",
+})
+
+require("fzf-lua").setup({})
+vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", {})

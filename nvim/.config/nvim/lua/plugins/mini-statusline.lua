@@ -1,9 +1,5 @@
-return {
-  {
-    'nvim-mini/mini.statusline',
-    version = false,
-    config = function()
-      require('mini.statusline').setup({})
-    end
-  },
-}
+vim.pack.add({
+  "https://github.com/nvim-mini/mini.statusline",
+})
+
+require('mini.statusline').setup({})

@@ -1,8 +1,7 @@
-return {
-  "norcalli/nvim-colorizer.lua",
-  config = function()
-    require("colorizer").setup({
-      "*", -- Highlight all files
-    })
-  end,
-}
+vim.pack.add({
+  "https://github.com/norcalli/nvim-colorizer.lua",
+})
+
+require("colorizer").setup({
+  "*",
+})

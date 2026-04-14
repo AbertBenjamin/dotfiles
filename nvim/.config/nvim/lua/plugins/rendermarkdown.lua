@@ -1,4 +1,3 @@
-return {
-    'MeanderingProgrammer/render-markdown.nvim',
-    ft = { 'markdown', 'quarto' },
-}
+vim.pack.add({
+  "https://github.com/MeanderingProgrammer/render-markdown.nvim",
+})

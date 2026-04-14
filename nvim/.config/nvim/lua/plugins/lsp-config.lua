@@ -1,120 +1,94 @@
-return {
-  {
-    "mason-org/mason.nvim",
-    opts = {
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
-        },
+vim.pack.add({
+  { src = "https://github.com/mason-org/mason.nvim" },
+  { src = "https://github.com/neovim/nvim-lspconfig" },
+  { src = "https://github.com/ray-x/lsp_signature.nvim" },
+  { src = "https://github.com/folke/trouble.nvim" },
+  { src = "https://github.com/kyazdani42/nvim-web-devicons" },
+  { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
+})
+
+-- mason
+require("mason").setup({
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗",
+    },
+  },
+})
+
+-- mason-tool-installer
+require("mason-tool-installer").setup({
+  ensure_installed = {
+    "jdtls",
+    "bash-language-server",
+    "docker-compose-language-service",
+    "dockerfile-language-server",
+    "eslint-lsp",
+    "json-lsp",
+    "lemminx",
+    "typescript-language-server",
+    "yaml-language-server",
+    "gopls",
+    "lua-language-server",
+    "kotlin-lsp"
+  },
+})
+
+-- built-in completion
+vim.opt.completeopt = 'menuone,noselect'
+vim.opt.pumheight = 10
+vim.opt.pumwidth = 20
+
+vim.keymap.set('i', '<Right>', function()
+  if vim.fn.pumvisible() == 1 then
+    return '<C-y>'
+  else
+    return '<C-x><C-o>'
+  end
+end, { expr = true })
+
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      diagnostics = { globals = { "vim" } },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
       },
     },
   },
-  {
-    'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets' },
-    version = '1.*',
+})
 
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
-    opts = {
-      keymap = {
-        ["<Right>"] = { "show", "fallback" },
-        ["<Tab>"] = { "select_next", "fallback" },
-        ["<S-Tab>"] = { "select_prev", "fallback" },
-        ["<CR>"] = { "accept", "fallback" },
-      },
-      appearance = {
-        nerd_font_variant = 'mono'
-      },
-      completion = {
-        documentation = { auto_show = false },
-        ghost_text = { enabled = true }
-      },
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni' },
-      },
-      fuzzy = { implementation = "prefer_rust_with_warning" }
-    },
-    opts_extend = { "sources.default" }
-  },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp" },
-    config = function()
-      -- Pass blink.cmp capabilities to every LSP server (Neovim 0.11+ native API)
-      vim.lsp.config('*', {
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
-      })
+vim.lsp.enable({
+    "jdtls",
+    "bashls",
+    "docker_compose_language_service",
+    "dockerls",
+    "eslint",
+    "jsonls",
+    "lemminx",
+    "ts_ls",
+    "yamlls",
+    "gopls",
+    "lua_ls",
+    "kotlin-lsp"
+})
 
-      -- lua_ls: add Neovim-specific settings so "vim" global is recognised
-      vim.lsp.config('lua_ls', {
-        settings = {
-          Lua = {
-            diagnostics = { globals = { "vim" } },
-            workspace = {
-              library = vim.api.nvim_get_runtime_file("", true),
-              checkThirdParty = false,
-            },
-          },
-        },
-      })
-    end,
-  },
-  {
-    "mason-org/mason-lspconfig.nvim",
-    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
-    config = function()
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-      local lspconfig = require("lspconfig")
+-- lsp_signature
+require("lsp_signature").setup({
+  bind = true,
+  hint_enable = true,
+  hint_prefix = "🐍 ",
+  handler_opts = {},
+  floating_window = true,
+  floating_window_above_cur_line = true,
+})
 
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "jdtls",
-          "bashls",
-          "docker_compose_language_service",
-          "dockerls",
-          "eslint",
-          "jsonls",
-          "lemminx",
-          "ts_ls",
-          "yamlls",
-          "gopls",
-          "lua_ls"
-        },
-        -- kotlin_lsp is managed entirely by kotlin.nvim – skip auto-enable here
-        automatic_enable = {
-          exclude = { "kotlin_lsp" },
-        },
-      })
-    end,
-  },
-  {
-    "ray-x/lsp_signature.nvim",
-    config = function()
-      require("lsp_signature").setup({
-        bind = true,
-        hint_enable = true, -- Enable virtual text hints like in IntelliJ
-        hint_prefix = "🐍 ", -- Optional: Custom hint icon
-        handler_opts = {
-          border = "rounded", -- Rounded border for the popup
-        },
-        floating_window = true, -- Show signatures in a floating window
-        floating_window_above_cur_line = true, -- Align the floating window above the current line
-      })
-    end,
-  },
-  {
-    "folke/trouble.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      require("trouble").setup({
-        auto_open = false,   -- Do not auto-open trouble when errors are detected
-        auto_close = true,   -- Auto-close when the trouble list is empty
-        use_diagnostic_signs = true, -- Use LSP diagnostic signs
-      })
-    end,
-  },
-}
-
+-- trouble
+require("trouble").setup({
+  auto_open = false,
+  auto_close = true,
+  use_diagnostic_signs = true,
+})

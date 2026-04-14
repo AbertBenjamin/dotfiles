@@ -1,8 +1,7 @@
-return {
-  'FabijanZulj/blame.nvim',
-  config = function()
-    require('blame').setup({
-      focus_blame = false
-    })
-  end
-}
+vim.pack.add({
+  "https://github.com/FabijanZulj/blame.nvim",
+})
+
+require('blame').setup({
+  focus_blame = false,
+})
