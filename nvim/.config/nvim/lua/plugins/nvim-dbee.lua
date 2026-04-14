@@ -13,4 +13,4 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
-require("dbee").setup()
+pcall(require("dbee").setup)

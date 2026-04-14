@@ -1,7 +1,7 @@
 vim.pack.add({
-  "https://github.com/norcalli/nvim-colorizer.lua",
+  "https://github.com/NvChad/nvim-colorizer.lua",
 })
 
 require("colorizer").setup({
-  "*",
+  filetypes = { "*" },
 })

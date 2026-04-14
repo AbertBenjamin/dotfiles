@@ -1,7 +1,5 @@
 vim.pack.add({
   { src = "https://github.com/mason-org/mason.nvim" },
-  { src = "https://github.com/neovim/nvim-lspconfig" },
-  { src = "https://github.com/ray-x/lsp_signature.nvim" },
   { src = "https://github.com/folke/trouble.nvim" },
   { src = "https://github.com/kyazdani42/nvim-web-devicons" },
   { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
@@ -61,29 +59,29 @@ vim.lsp.config('lua_ls', {
   },
 })
 
-vim.lsp.enable({
-    "jdtls",
-    "bashls",
-    "docker_compose_language_service",
-    "dockerls",
-    "eslint",
-    "jsonls",
-    "lemminx",
-    "ts_ls",
-    "yamlls",
-    "gopls",
-    "lua_ls",
-    "kotlin-lsp"
+-- Disable line numbers in LSP hover/signature floating windows
+vim.api.nvim_create_autocmd("WinNew", {
+  callback = function()
+    local win = vim.api.nvim_get_current_win()
+    if vim.api.nvim_win_get_config(win).relative ~= "" then
+      vim.wo[win].number = false
+      vim.wo[win].relativenumber = false
+    end
+  end,
 })
 
--- lsp_signature
-require("lsp_signature").setup({
-  bind = true,
-  hint_enable = true,
-  hint_prefix = "🐍 ",
-  handler_opts = {},
-  floating_window = true,
-  floating_window_above_cur_line = true,
+vim.lsp.enable({
+  "jdtls",
+  "bashls",
+  "docker_compose_language_service",
+  "dockerls",
+  "eslint",
+  "jsonls",
+  "lemminx",
+  "ts_ls",
+  "yamlls",
+  "gopls",
+  "lua_ls",
 })
 
 -- trouble

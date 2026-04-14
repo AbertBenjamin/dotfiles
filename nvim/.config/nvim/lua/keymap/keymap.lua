@@ -46,3 +46,7 @@ keymap("n", "k", fn.smart_move("k"), opts)
 
 -- Jump back to last jump-mark
 keymap("n", "''", "''", opts)
+
+-- fff
+keymap("n", "<leader>ff", function() require('fff').find_files() end, { desc = 'FFFind files' })
+keymap("n", "<leader>fg", function() require('fff').live_grep() end, opts)

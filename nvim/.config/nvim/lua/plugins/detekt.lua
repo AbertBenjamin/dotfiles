@@ -3,6 +3,5 @@ vim.pack.add({
 })
 
 require("detekt").setup({
-  config_names = { "detekt-config.yml" },
   file_pattern = { "*.kt" },
 })

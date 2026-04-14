@@ -1,18 +1,7 @@
-vim.pack.add({
-  { src = "https://github.com/kevinhwang91/promise-async" },
-  { src = "https://github.com/kevinhwang91/nvim-ufo" },
-})
-
+-- Built-in treesitter folding (no plugin needed in 0.12)
 vim.o.foldcolumn = '1'
 vim.o.foldlevel = 50
 vim.o.foldlevelstart = 50
 vim.o.foldenable = true
-
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-
-require('ufo').setup({
-  provider_selector = function(bufnr, filetype, buftype)
-    return {'treesitter', 'indent'}
-  end
-})
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
