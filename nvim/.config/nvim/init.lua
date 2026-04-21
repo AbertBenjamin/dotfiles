@@ -36,8 +36,20 @@ require "plugins.treesitter"
 -- Set colorscheme after all plugins are loaded
 vim.cmd.colorscheme("darculasolid")
 
+-- Match FloatBorder background to Normal so floating window borders don't have mismatched colors
+local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+local border_hl = vim.api.nvim_get_hl(0, { name = "FloatBorder" })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = border_hl.fg or normal_hl.fg, bg = normal_hl.bg })
+
 -- Create a new augroup named "highlight_yank"
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   group = vim.api.nvim_create_augroup("treesitter_ensure_highlight", { clear = true }),
+--   callback = function()
+--     pcall(vim.treesitter.start)
+--   end,
+-- })
 
 -- Create an autocmd for TextYankPost event
 vim.api.nvim_create_autocmd("TextYankPost", {

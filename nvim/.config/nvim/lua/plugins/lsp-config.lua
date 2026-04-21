@@ -47,18 +47,6 @@ vim.keymap.set('i', '<Right>', function()
   end
 end, { expr = true })
 
-vim.lsp.config('lua_ls', {
-  settings = {
-    Lua = {
-      diagnostics = { globals = { "vim" } },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-      },
-    },
-  },
-})
-
 -- Disable line numbers in LSP hover/signature floating windows
 vim.api.nvim_create_autocmd("WinNew", {
   callback = function()
