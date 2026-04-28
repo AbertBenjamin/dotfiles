@@ -29,9 +29,11 @@ require "plugins.oil"
 require "plugins.plenary"
 require "plugins.rainbow-delimiters"
 require "plugins.rendermarkdown"
-require "plugins.snacks"
+
 require "plugins.surround"
 require "plugins.treesitter"
+require "plugins.ufo"
+require "plugins.undotree"
 
 -- Set colorscheme after all plugins are loaded
 vim.cmd.colorscheme("darculasolid")
@@ -43,13 +45,6 @@ vim.api.nvim_set_hl(0, "FloatBorder", { fg = border_hl.fg or normal_hl.fg, bg = 
 
 -- Create a new augroup named "highlight_yank"
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
-
--- vim.api.nvim_create_autocmd("BufEnter", {
---   group = vim.api.nvim_create_augroup("treesitter_ensure_highlight", { clear = true }),
---   callback = function()
---     pcall(vim.treesitter.start)
---   end,
--- })
 
 -- Create an autocmd for TextYankPost event
 vim.api.nvim_create_autocmd("TextYankPost", {

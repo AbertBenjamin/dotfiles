@@ -18,6 +18,7 @@ vim.opt.guicursor = table.concat({
 
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+vim.opt.autowriteall = true
 
 vim.opt.swapfile = false
 vim.opt.relativenumber = true
