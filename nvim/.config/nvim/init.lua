@@ -29,12 +29,19 @@ require "plugins.oil"
 require "plugins.plenary"
 require "plugins.rainbow-delimiters"
 require "plugins.rendermarkdown"
-require "plugins.snacks"
+
 require "plugins.surround"
 require "plugins.treesitter"
+require "plugins.ufo"
+require "plugins.undotree"
 
 -- Set colorscheme after all plugins are loaded
 vim.cmd.colorscheme("darculasolid")
+
+-- Match FloatBorder background to Normal so floating window borders don't have mismatched colors
+local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+local border_hl = vim.api.nvim_get_hl(0, { name = "FloatBorder" })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = border_hl.fg or normal_hl.fg, bg = normal_hl.bg })
 
 -- Create a new augroup named "highlight_yank"
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })

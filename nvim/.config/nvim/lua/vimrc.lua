@@ -4,7 +4,7 @@ vim.g.maplocalleader = ' '
 vim.opt.backspace = '2'
 vim.opt.cursorline = true
 vim.opt.colorcolumn = "80"
-vim.opt.winborder = "none"
+vim.opt.winborder = "rounded"
 vim.opt.equalalways = true
 
 vim.opt.guicursor = table.concat({
@@ -18,6 +18,7 @@ vim.opt.guicursor = table.concat({
 
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+vim.opt.autowriteall = true
 
 vim.opt.swapfile = false
 vim.opt.relativenumber = true

@@ -13,8 +13,15 @@ if lint.linters.detekt then
   }
 end
 
+-- Only run linters that are actually installed
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
   callback = function()
-    lint.try_lint()
+    local linters = lint._resolve_linter_by_ft(vim.bo.filetype)
+    linters = vim.tbl_filter(function(name)
+      local l = lint.linters[name]
+      local cmd = type(l) == "table" and l.cmd or nil
+      return cmd and vim.fn.executable(cmd) == 1
+    end, linters)
+    lint.try_lint(linters)
   end,
 })

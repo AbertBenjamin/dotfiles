@@ -18,5 +18,10 @@ require("fff").setup({
   layout = {
     prompt_position = 'top',
   },
+  preview ={
+    enabled = false
+  },
+  hl = {
+    border = "FloatBorder"
+  }
 })
-
