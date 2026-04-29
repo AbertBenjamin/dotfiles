@@ -13,6 +13,7 @@ alias fzf="fzf --preview='cat {}'"
 
 alias gs="git status"
 alias gd="git diff"
+alias gdt="nvim -c 'CodeDiff'"
 alias gc="git commit"
 alias ga="git add"
 alias pull="git pull"
