@@ -6,6 +6,7 @@ local keymap = vim.keymap.set
 keymap('n', "n", 'nzz', opts)
 keymap('n', '<esc><esc>', ':nohls<CR>', opts)
 keymap('n', '<leader>w', ':w<CR>', opts)
+keymap('n', '<leader>q', ':qa!<CR>', opts)
 keymap('n', '<leader>a', ':BlameToggle<CR>', opts)
 -- keymap("n", "<C-n>", ":Neotree toggle<CR>", opts)
 keymap("n", "<C-n>", function()
