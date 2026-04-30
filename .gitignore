@@ -1,6 +1,7 @@
 .zcompdump
 .zsh_history
 .zsh_session
+.zsh_sessions
 *.lazy-lock.json
 *.log
 
