@@ -41,8 +41,10 @@ vim.opt.fillchars = { eob = " " }
 
 -- Folds managed by ufo.lua
 
+-- 5. Diagnostics with virtual lines on current line
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
+  virtual_lines = { current_line = true },
   signs = true,
   underline = true,
   update_in_insert = true,
