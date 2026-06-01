@@ -29,6 +29,12 @@ run = ['layout tiling', 'move-node-to-workspace 1']  # The callback itself
 [[on-window-detected]]
 # if.app-id = 'com.jetbrains.intelliJ'
 if.app-name-regex-substring = 'intelliJ'
+if.window-title-regex-substring = 'Settings|Preferences|Evaluate|Run/Debug|Breakpoints|Project Structure'
+run = ['layout floating']
+
+[[on-window-detected]]
+# if.app-id = 'com.jetbrains.intelliJ'
+if.app-name-regex-substring = 'intelliJ'
 # if.window-title-regex-substring = 'IDEA'
 run = ['layout tiling', 'move-node-to-workspace 2']  # The callback itself
  
@@ -46,15 +52,28 @@ run = ['layout tiling', 'move-node-to-workspace 3']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
+if.window-title-regex-substring = 'Huddle'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
 # if.app-name-regex-substring = ''
 # if.window-title-regex-substring = ''
 run = ['layout tiling', 'move-node-to-workspace 4']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
-# if.app-name-regex-substring = ''
-# if.window-title-regex-substring = ''
-run = ['layout tiling', 'move-node-to-workspace 4']  # The callback itself
+if.window-title-regex-substring = '(?i)reminder|påminnelse'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+if.during-aerospace-startup = true
+run = ['layout tiling', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = ['layout tiling', 'move-node-to-workspace 4']
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
@@ -65,8 +84,26 @@ run = ['layout floating', 'move-node-to-workspace 5']  # The callback itself
 [[on-window-detected]]
 # if.app-id = 'com.microsoft.teams'
 if.app-name-regex-substring = 'teams'
+if.window-title-regex-substring = 'Call|Meeting|Calling'
+run = ['layout floating']
+
+[[on-window-detected]]
+# if.app-id = 'com.microsoft.teams'
+if.app-name-regex-substring = 'teams'
 # if.window-title-regex-substring = ''
 run = ['layout tiling', 'move-node-to-workspace 6']  # The callback itself
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.calculator'
+run = ['layout floating']
 
 [mode.main.binding]
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
