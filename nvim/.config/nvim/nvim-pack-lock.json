@@ -69,7 +69,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "kotlin.nvim": {
-      "rev": "262340932602a77ce0be12aab949864a37a756bc",
+      "rev": "ccd296fb6345ba99f078ecd606fe46af4c1919d0",
       "src": "https://github.com/AlexandrosAlexiou/kotlin.nvim"
     },
     "lensline.nvim": {

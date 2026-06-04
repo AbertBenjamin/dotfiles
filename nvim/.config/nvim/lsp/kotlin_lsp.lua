@@ -45,7 +45,7 @@ for _, protocol in ipairs({ "jar", "jrt" }) do
 end
 
 return {
-  cmd = { mason_bin, "--stdio", "--system-path=" .. cache_dir },
+  cmd = { mason_bin, "--stdio", "--system-path=" .. cache_dir, "--storage-backend=MVS" },
   filetypes = { "kotlin" },
   root_markers = { "settings.gradle", "settings.gradle.kts", "build.gradle", "build.gradle.kts", "pom.xml", "mvnw", "gradlew" },
   settings = {

@@ -35,17 +35,47 @@ require("mason-tool-installer").setup({
 })
 
 -- built-in completion
-vim.opt.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'menuone,noselect,fuzzy'
 vim.opt.pumheight = 10
 vim.opt.pumwidth = 20
 
-vim.keymap.set('i', '<Right>', function()
-  if vim.fn.pumvisible() == 1 then
-    return '<C-y>'
-  else
-    return '<C-x><C-o>'
-  end
-end, { expr = true })
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local buf = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    -- Auto-completion
+    vim.lsp.completion.enable(true, args.data.client_id, buf, { autotrigger = true })
+
+    -- 2. Tab/S-Tab for completion navigation
+    vim.keymap.set('i', '<Tab>', function()
+      if vim.fn.pumvisible() == 1 then return '<C-n>' else return '<Tab>' end
+    end, { buffer = buf, expr = true })
+    vim.keymap.set('i', '<S-Tab>', function()
+      if vim.fn.pumvisible() == 1 then return '<C-p>' else return '<S-Tab>' end
+    end, { buffer = buf, expr = true })
+
+    -- 3. Signature help while typing function arguments
+    if client and client:supports_method("textDocument/signatureHelp") then
+      vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { buffer = buf })
+    end
+
+    -- 4. Highlight references under cursor
+    if client and client:supports_method("textDocument/documentHighlight") then
+      local hl_group = vim.api.nvim_create_augroup("LspHighlight_" .. buf, { clear = true })
+      vim.api.nvim_create_autocmd("CursorHold", {
+        group = hl_group,
+        buffer = buf,
+        callback = vim.lsp.buf.document_highlight,
+      })
+      vim.api.nvim_create_autocmd("CursorMoved", {
+        group = hl_group,
+        buffer = buf,
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
+  end,
+})
 
 -- Disable line numbers in LSP hover/signature floating windows
 vim.api.nvim_create_autocmd("WinNew", {
@@ -70,6 +100,7 @@ vim.lsp.enable({
   "yamlls",
   "gopls",
   "lua_ls",
+  "kotlin_lsp",
 })
 
 -- trouble
