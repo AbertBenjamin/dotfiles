@@ -273,6 +273,10 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "swaybg" "-i" "/usr/share/sddm/themes/silent/backgrounds/default.jpg"
 
+// Polkit agent - without it, GUI actions needing root (disk mounting,
+// NetworkManager applets, etc.) fail silently with no prompt.
+spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
+
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 

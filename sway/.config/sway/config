@@ -7,6 +7,10 @@ exec_always {
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+# Polkit agent - without it, GUI actions needing root (disk mounting,
+# NetworkManager applets, etc.) fail silently with no prompt.
+exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+
 ### Variables
 #
 

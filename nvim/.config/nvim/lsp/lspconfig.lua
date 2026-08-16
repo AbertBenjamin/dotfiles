@@ -1,0 +1,4 @@
+-- vim.lsp.config['lua_ls'] = {
+--   cmd = { '$HOME/.local/share/nvim/mason/bin/lua-language-server' }
+-- }
+--

@@ -65,3 +65,4 @@ if [[ -f "$(brew --prefix 2>/dev/null)/share/google-cloud-sdk/completion.zsh.inc
 elif [ -f '/Users/Benjamin.Ostvang.Abert/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
     source '/Users/Benjamin.Ostvang.Abert/Downloads/google-cloud-sdk/completion.zsh.inc'
 fi
+export PATH="$HOME/.local/bin:$PATH"
