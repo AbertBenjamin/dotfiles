@@ -68,10 +68,6 @@
       "rev": "50c205548d8b037b7ff6378fca6d21146f0b6161",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
-    "kotlin.nvim": {
-      "rev": "ccd296fb6345ba99f078ecd606fe46af4c1919d0",
-      "src": "https://github.com/AlexandrosAlexiou/kotlin.nvim"
-    },
     "lensline.nvim": {
       "rev": "1dd55c72431e6ce1e16e85c6f9903fd65ff37d8c",
       "src": "https://github.com/oribarilan/lensline.nvim",
@@ -81,10 +77,6 @@
       "rev": "af7e4074d85d785cf6614352ba9ad3b28a1f8a56",
       "src": "https://github.com/ray-x/lsp_signature.nvim"
     },
-    "mason-lspconfig.nvim": {
-      "rev": "9d28935aa95fa6c1dc7c4d6747f101a72a8a4bec",
-      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
-    },
     "mason-tool-installer.nvim": {
       "rev": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc",
       "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
@@ -92,6 +84,10 @@
     "mason.nvim": {
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mermaid.nvim": {
+      "rev": "b6ab941f418809d40102f11ace9da3569c33e52e",
+      "src": "https://github.com/kevalin/mermaid.nvim"
     },
     "mini.ai": {
       "rev": "4b0a6207341d895b6cfe9bcb1e4d3e8607bfe4f4",
@@ -164,10 +160,6 @@
     "nvim-lint": {
       "rev": "4b03656c09c1561f89b6aa0665c15d292ba9499d",
       "src": "https://github.com/mfussenegger/nvim-lint"
-    },
-    "nvim-lspconfig": {
-      "rev": "16812abf0e8d8175155f26143a8504e8253e92b0",
-      "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
       "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
