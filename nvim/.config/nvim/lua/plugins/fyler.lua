@@ -4,28 +4,12 @@ vim.pack.add({
 })
 
 require("fyler").setup({
-  views = {
-    finder = {
-      close_on_select = false,
-      confirm_simple = false,
-      default_explorer = true,
-      delete_to_trash = true,
-      columns = {
-        git = {
-          enabled = true,
-          symbols = {
-            added = "+",
-            modified = "*",
-            deleted = "-",
-            renamed = ">",
-            untracked = "??",
-            copied = "=",
-            conflict = "UU",
-            ignored = "",
-          },
-        },
-      },
-      follow_current_file = true,
-    },
+  -- IntelliJ-aktig: fast venstre sidebar med ikoner og innrykkslinjer
+  kind = "split_left_most",
+  integrations = { icon = "mini_icons" },
+  ui = { indent_guides = true },
+  extensions = {
+    git = { enabled = true },
+    trash = { enabled = true },
   },
 })
