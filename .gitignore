@@ -6,6 +6,7 @@
 *.log
 
 **/zsh/.zcompdump*
+**/zsh/.zcompcache-*
 .DS_Store
 
 

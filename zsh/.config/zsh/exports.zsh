@@ -6,9 +6,10 @@ export SUDO_EDITOR="nvim"
 export KUBECONFIG="$HOME/.kube/config"
 
 # Go build with OpenSSL dependency
-if [[ -x /opt/homebrew/bin/brew ]]; then
-    export CGO_CFLAGS="-I$(brew --prefix openssl)/include"
-    export CGO_LDFLAGS="-L$(brew --prefix openssl)/lib"
+# ponytail: statisk sti; `brew --prefix` er ~25 ms per kall
+if [[ -d /opt/homebrew/opt/openssl ]]; then
+    export CGO_CFLAGS="-I/opt/homebrew/opt/openssl/include"
+    export CGO_LDFLAGS="-L/opt/homebrew/opt/openssl/lib"
 fi
 
 # SDKMAN - initialized first before PATH modifications

@@ -7,7 +7,8 @@ zsh_add_file "plugins.zsh"
 
 FPATH="$HOME/.docker/completions:$FPATH"
 
-autoload -Uz compinit && compinit
+# ponytail: -C hopper over stale-sjekken; slett .zcompdump etter nye completions
+autoload -Uz compinit && compinit -C
 
 eval "$(direnv hook zsh)"
 
@@ -19,7 +20,13 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 # completions
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+# ponytail: cache completion i stedet for å forke kubectl hver oppstart
+if [[ $commands[kubectl] ]]; then
+  kubectl_comp=$ZDOTDIR/.zcompcache-kubectl
+  [[ -s $kubectl_comp ]] || kubectl completion zsh >| $kubectl_comp
+  source $kubectl_comp
+  unset kubectl_comp
+fi
 zstyle ':completion:*' menu select
 
 
@@ -60,8 +67,8 @@ if [ -f '/Users/Benjamin.Ostvang.Abert/Downloads/google-cloud-sdk/path.zsh.inc' 
 fi
 
 # Google Cloud SDK completion (prefer brew version if available, otherwise use downloaded version)
-if [[ -f "$(brew --prefix 2>/dev/null)/share/google-cloud-sdk/completion.zsh.inc" ]]; then
-    source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+if [[ -f /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc ]]; then
+    source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
 elif [ -f '/Users/Benjamin.Ostvang.Abert/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
     source '/Users/Benjamin.Ostvang.Abert/Downloads/google-cloud-sdk/completion.zsh.inc'
 fi
