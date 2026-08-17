@@ -1,0 +1,13 @@
+{
+    (
+        modifiers: [
+            Alt,
+        ],
+        key: "space",
+    ): System(Launcher),
+    (
+        modifiers: [
+            Super,
+        ],
+    ): System(WorkspaceOverview),
+}
