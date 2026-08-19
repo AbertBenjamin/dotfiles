@@ -14,7 +14,7 @@ fi
 # SDKMAN - initialized first before PATH modifications
 export SDKMAN_DIR="$HOME/.sdkman"
 # Deduplicate PATH automatically (prevents duplicates on reload)
-typeset -U path
+typeset -gU path
 # sdkman-init.sh koster ~90 ms, men bidrar bare med disse PATH-oppføringene
 # ved oppstart. Last hele skriptet først når `sdk` faktisk brukes.
 path=($SDKMAN_DIR/candidates/*/current/bin(N) $path)
