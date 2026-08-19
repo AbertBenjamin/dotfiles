@@ -1,7 +1,5 @@
 vim.pack.add({
   { src = "https://github.com/mason-org/mason.nvim" },
-  { src = "https://github.com/folke/trouble.nvim" },
-  { src = "https://github.com/kyazdani42/nvim-web-devicons" },
   { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
 })
 
@@ -101,11 +99,4 @@ vim.lsp.enable({
   "gopls",
   "lua_ls",
   "kotlin_lsp",
-})
-
--- trouble
-require("trouble").setup({
-  auto_open = false,
-  auto_close = true,
-  use_diagnostic_signs = true,
 })
