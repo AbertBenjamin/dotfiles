@@ -3,6 +3,7 @@ source "$ZDOTDIR/functions.zsh"
 zsh_add_file "exports.zsh"
 zsh_add_file "aliases.zsh"
 zsh_add_file "prompt.zsh"
+zvm_after_init_commands+=('eval "$(fzf --zsh)"')
 zsh_add_file "plugins.zsh"
 
 FPATH="$HOME/.docker/completions:$FPATH"
