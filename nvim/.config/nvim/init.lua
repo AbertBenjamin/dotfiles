@@ -7,7 +7,8 @@ require "plugins.codediff"
 require "plugins.comfylinenumbers"
 require "plugins.conform"
 require "plugins.copilot"
--- require "plugins.detekt"  -- needs detekt.yml in project root
+require "plugins.detekt" -- needs detekt.yml in project root
+require "plugins.difftool"
 require "plugins.fff"
 require "plugins.flash"
 require "plugins.fyler"
@@ -63,10 +64,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- close qf-list when pressing enter on an entry
+-- close qf-list when pressing enter on an entry (except in DiffTool)
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
   callback = function()
-    vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "<CR>", function()
+      if vim.fn.getqflist({ title = 1 }).title == "DiffTool" then
+        return "<CR>"
+      end
+      return "<CR>:cclose<CR>"
+    end, { buffer = true, silent = true, expr = true })
   end
 })

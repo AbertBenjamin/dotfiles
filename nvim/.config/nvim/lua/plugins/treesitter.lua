@@ -6,7 +6,7 @@ vim.pack.add({
 require("nvim-treesitter").install({
   "lua", "kotlin", "java", "javascript", "toml", "json", "bash", "c",
   "dockerfile", "gitattributes", "gitcommit", "gitignore", "vim", "vimdoc",
-  "properties", "query", "tmux", "css", "html", "sql", "markdown",
+  "properties", "query", "css", "html", "sql", "markdown",
   "markdown_inline", "typescript", "xml", "go", "yaml",
 })
 
