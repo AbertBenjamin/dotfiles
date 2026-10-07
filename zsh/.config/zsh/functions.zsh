@@ -33,6 +33,26 @@ nf() {
   file=$(fzf --preview='bat {}') && [ -n "$file" ] && nvim "$file"
 }
 
+_vs_files() {
+  { git diff --name-only --relative --diff-filter=d HEAD; git ls-files --others --exclude-standard; } 2>/dev/null | sort -u
+}
+
+vs() {
+  if (( $# )); then
+    nvim "$@"
+    return
+  fi
+  local files
+  files=$(_vs_files | command fzf --multi --height 40% --min-height 20+ --reverse) || return
+  nvim ${(f)files}
+}
+
+_vs() {
+  local -a files
+  files=(${(f)"$(_vs_files)"})
+  compadd -f -a files
+}
+
 cdd() {
   local dir
   dir=$(fd -t d | fzf --prompt="Directory: " --height=50% --border)

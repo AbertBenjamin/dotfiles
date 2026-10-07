@@ -29,6 +29,7 @@ if [[ $commands[kubectl] ]]; then
   unset kubectl_comp
 fi
 zstyle ':completion:*' menu select
+compdef _vs vs
 
 
 export KEYTIMEOUT=1
