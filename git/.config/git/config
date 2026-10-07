@@ -17,10 +17,10 @@
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [diff]
-  tool = codediff
+  tool = nvim
 
-[difftool "codediff"]
-  cmd = nvim -f -c "CodeDiff file \"$LOCAL\" \"$REMOTE\""
+[difftool "nvim"]
+  cmd = nvim -c \"DiffTool $LOCAL $REMOTE\"
 
 [difftool]
   prompt = false
