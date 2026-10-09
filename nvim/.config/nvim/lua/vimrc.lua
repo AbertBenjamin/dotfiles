@@ -29,6 +29,20 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 vim.opt.swapfile = false
+-- Agenter endrer filer på disk mens de er åpne her: last dem inn på nytt
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "TermLeave" }, {
+  command = "silent! checktime",
+})
+-- CursorHold fyrer bare én gang etter at markøren stopper; timer fanger opp
+-- endringer mens man bare ser på
+local checktime_timer = vim.uv.new_timer()
+checktime_timer:start(1000, 1000, vim.schedule_wrap(function()
+  if vim.fn.mode() ~= "c" and vim.fn.getcmdwintype() == "" then
+    vim.cmd("silent! checktime")
+  end
+end))
+
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.termguicolors = true

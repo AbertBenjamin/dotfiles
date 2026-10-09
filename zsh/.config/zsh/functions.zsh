@@ -59,3 +59,45 @@ cdd() {
   [[ -n $dir ]] && cd "$dir"
 }
 
+# Én worktree + tmux-session per agent: wt <branch>
+# Lager <repo>.wt/<branch> ved siden av repoet, starter claude og nvim der
+wt() {
+  local branch=$1 root dir name
+  [[ -n $branch ]] || { echo "bruk: wt <branch>"; return 1; }
+  # hovedrepoet, også når man står i en worktree
+  root=$(git rev-parse --path-format=absolute --git-common-dir) || return
+  root=${root%/.git}
+  dir="${root}.wt/${branch//\//_}"
+  if [[ ! -d $dir ]]; then
+    if git -C "$root" show-ref --verify --quiet "refs/heads/$branch"; then
+      git -C "$root" worktree add "$dir" "$branch" || return
+    else
+      git -C "$root" worktree add -b "$branch" "$dir" || return
+    fi
+  fi
+  name="$(basename $root)_${branch//[.\/]/_}"
+  if ! tmux has-session -t "=$name" 2>/dev/null; then
+    tmux new-session -ds "$name" -c "$dir" -n agent
+    tmux send-keys -t "${name}:agent" "claude" C-m
+    tmux new-window -t "$name" -n nvim -c "$dir" nvim
+    tmux select-window -t "${name}:agent"
+  fi
+  if [[ -n $TMUX ]]; then
+    tmux switch-client -t "$name"
+  else
+    tmux attach-session -t "$name"
+  fi
+}
+
+# Fjern worktree og tilhørende tmux-session: wtrm <branch>
+wtrm() {
+  local branch=$1 root dir name
+  [[ -n $branch ]] || { echo "bruk: wtrm <branch>"; return 1; }
+  root=$(git rev-parse --path-format=absolute --git-common-dir) || return
+  root=${root%/.git}
+  dir="${root}.wt/${branch//\//_}"
+  name="$(basename $root)_${branch//[.\/]/_}"
+  git -C "$root" worktree remove "$dir" || return
+  tmux kill-session -t "=$name" 2>/dev/null
+  return 0
+}
