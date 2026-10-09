@@ -18,3 +18,9 @@ karabiner/.config/karabiner/automatic_backups/*
 **/tmux/plugins/*
 
 
+
+# claude: bare config spores, aldri credentials/historikk hvis ~/.claude ble foldet
+claude/.claude/*
+!claude/.claude/CLAUDE.md
+!claude/.claude/settings.json
+!claude/.claude/hooks/

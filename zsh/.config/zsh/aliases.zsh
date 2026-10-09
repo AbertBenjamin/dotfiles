@@ -4,8 +4,11 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias k="kubectl"
-alias ls=eza
-alias cat=bat
+# Claude Code tar et snapshot av shellet; hold agentens ls/cat standard
+if [[ -z $CLAUDECODE ]]; then
+  alias ls=eza
+  alias cat=bat
+fi
 # alias cd="zoxide"
 alias la="ls -a"
 alias c="clear -x"

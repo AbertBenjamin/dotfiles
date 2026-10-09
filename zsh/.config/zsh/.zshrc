@@ -60,7 +60,7 @@ add-zsh-hook precmd tmux_hook
 setopt prompt_subst
 
 
-eval "$(zoxide init --cmd cd zsh)"
+[[ -z $CLAUDECODE ]] && eval "$(zoxide init --cmd cd zsh)"
 
 
 # Google Cloud SDK
