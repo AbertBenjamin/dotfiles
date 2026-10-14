@@ -5,6 +5,9 @@
 [color]
   ui = auto
 
+[branch]
+  autoSetupMerge = simple
+
 [push]
   autoSetupRemote = true
 
