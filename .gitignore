@@ -18,3 +18,8 @@ karabiner/.config/karabiner/automatic_backups/*
 **/tmux/plugins/*
 
 
+
+# nixos-rebuild build
+nixos/result
+nixos/result-*
+nixos/.claude/
