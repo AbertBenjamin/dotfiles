@@ -1,41 +1,19 @@
 #!/usr/bin/env bash
-# Kubectl context display for tmux status bar
-# Adapted from tmux2k kubecontext.sh
+# Kubectl context for tmux status bar. Prints nothing unless there is a real context.
+# Reads current-context straight from kubeconfig, so kubectl doesn't have to be on
+# the tmux server's PATH (it's often only in a project's nix devshell).
 
-# Initialize variables
-KUBECTL_BIN="kubectl"
+IFS=: read -ra configs <<< "${KUBECONFIG:-$HOME/.kube/config}"
+for cfg in "${configs[@]}"; do
+    [[ -r "$cfg" ]] || continue
+    context="$(awk '/^current-context:/ { gsub(/["'\'']/, "", $2); print $2; exit }' "$cfg")"
+    [[ -n "$context" ]] && break
+done
+[[ -n "$context" ]] || exit 0
 
-# Check if kubectl is available
-if ! command -v kubectl &> /dev/null; then
-    echo "☸ kubectl not found"
-    exit 0
+if command -v kubectl &>/dev/null; then
+    namespace="$(kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null)"
+    echo "☸ ${context}:${namespace:-default} "
+else
+    echo "☸ ${context} "
 fi
-
-# Get KUBECONFIG or use default
-KUBECONFIG_PATH="${KUBECONFIG:-${HOME}/.kube/config}"
-
-# Check if kubeconfig exists
-if [[ ! -e "${KUBECONFIG_PATH}" ]]; then
-    echo "☸ no config"
-    exit 0
-fi
-
-# Get current context
-context="$(${KUBECTL_BIN} config current-context 2>/dev/null)"
-exitcode=$?
-if [[ -z "${context}" ]] || [[ $exitcode != 0 ]]; then
-    echo "☸ no context"
-    exit 0
-fi
-
-# Get namespace
-namespace="$(${KUBECTL_BIN} config view --minify --output 'jsonpath={..namespace}' 2>/dev/null)"
-exitcode=$?
-if [[ $exitcode != 0 ]]; then
-    echo "☸ ${context}:error"
-    exit 0
-fi
-namespace="${namespace:-default}"
-
-# Output with kubernetes symbol
-echo "☸ ${context}:${namespace}"
