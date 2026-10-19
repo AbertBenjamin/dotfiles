@@ -49,13 +49,14 @@ vim.opt.fillchars = { eob = " " }
 
 -- Folds managed by ufo.lua
 
--- 5. Diagnostics with virtual lines on current line
+-- Diagnostics: underline only, message on K (see keymap.lua)
+vim.opt.signcolumn = "yes"
 vim.diagnostic.config({
   virtual_text = false,
-  virtual_lines = { current_line = true },
+  virtual_lines = false,
   signs = true,
   underline = true,
-  update_in_insert = true,
+  update_in_insert = false,
   severity_sort = true,
   float = {
     border = "rounded",
