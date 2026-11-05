@@ -13,7 +13,9 @@ precmd () {
   fi
 }
 
-#%n@%m
-PROMPT='%F{cyan}%1~%f ${vcs_info_msg_0_}
+# show user@host only when logged in over ssh
+[[ -n "$SSH_CONNECTION" ]] && prompt_host='%F{yellow}%n@%m%f '
+
+PROMPT='${prompt_host}%F{cyan}%1~%f ${vcs_info_msg_0_}
  ➜ '
 

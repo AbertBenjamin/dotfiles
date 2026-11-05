@@ -32,7 +32,11 @@ alias fzf="fzf --preview='cat {}'"
 
 alias gs="git status"
 alias gd="git diff"
-gdt() { git difftool -d "${@:-HEAD}"; }
+gdt() {
+  if (( $# == 0 )); then nvim -c "DiffBanditGit"
+  elif [[ $1 == *..* ]]; then nvim -c "DiffBanditGit --rev $1"
+  else nvim -c "DiffBanditGit --base $1"; fi
+}
 alias gc="git commit"
 alias ga="git add"
 alias pull="git pull"

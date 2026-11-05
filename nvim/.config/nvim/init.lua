@@ -9,6 +9,7 @@ require "plugins.comfylinenumbers"
 require "plugins.conform"
 require "plugins.copilot"
 require "plugins.detekt" -- needs detekt.yml in project root
+require "plugins.diffbandit"
 require "plugins.difftool"
 require "plugins.fff"
 require "plugins.flash"

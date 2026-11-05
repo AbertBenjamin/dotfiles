@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+# Rex port of tmux-sessionizer: pick a project dir (or an existing session)
+# with fzf, create a Rex session for it if needed, and switch the app to it.
+# With --output FILE the chosen session id is written to FILE instead, so the
+# ctrl+space f binding in init.lua can switch the app itself (client actions
+# from scripts need Remote Control, key bindings don't).
+# Reads the same config as tmux-sessionizer:
+#   ~/.config/tmux-sessionizer/tmux-sessionizer.conf (TS_SEARCH_PATHS, TS_EXTRA_SEARCH_PATHS, TS_MAX_DEPTH)
+
+CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-sessionizer/tmux-sessionizer.conf"
+if [[ -f "$CONFIG_FILE" ]]; then
+    # shellcheck source=/dev/null
+    source "$CONFIG_FILE"
+fi
+
+REX="${REX_BIN:-$(command -v rex)}"
+[[ -n "$REX" ]] || REX="/Applications/Rex Beta.app/Contents/Helpers/Rex Server.rex/Contents/MacOS/rex"
+
+for cmd in fzf jq; do
+    if ! command -v "$cmd" &>/dev/null; then
+        echo "$cmd is not installed. Please install it first."
+        exit 1
+    fi
+done
+if [[ ! -x "$REX" ]]; then
+    echo "rex CLI not found. Set REX_BIN or put rex on PATH."
+    exit 1
+fi
+
+[[ -n "$TS_SEARCH_PATHS" ]] || TS_SEARCH_PATHS=(~/ ~/github ~/.config)
+if [[ ${#TS_EXTRA_SEARCH_PATHS[@]} -gt 0 ]]; then
+    TS_SEARCH_PATHS+=("${TS_EXTRA_SEARCH_PATHS[@]}")
+fi
+
+# prints "<session_id>" for the session labelled $1, if any
+session_id_for() {
+    "$REX" ls --json 2>/dev/null | jq -r --arg l "$1" '.sessions[] | select(.label == $l) | .session_id' | head -1
+}
+
+hydrate() {
+    local session_id=$1 dir=$2 block file
+    for file in "$dir/.rex-sessionizer" "$dir/.tmux-sessionizer" "$HOME/.rex-sessionizer" "$HOME/.tmux-sessionizer"; do
+        if [[ -f "$file" ]]; then
+            block=$("$REX" block ls -s "$session_id" --json 2>/dev/null | jq -r '.. | .block_id? // empty' | head -1)
+            [[ -n "$block" ]] || return
+            "$REX" send -s "$session_id" -b "$block" "source $file" &&
+                "$REX" send-key -s "$session_id" -b "$block" enter
+            return
+        fi
+    done
+}
+
+find_dirs() {
+    # existing sessions first, except the one we're in
+    "$REX" ls --json 2>/dev/null |
+        jq -r --arg cur "${REX_SESSION:-}" '.sessions[] | select(.session_id != $cur) | "[REX] " + .label'
+
+    for entry in "${TS_SEARCH_PATHS[@]}"; do
+        if [[ "$entry" =~ ^([^:]+):([0-9]+)$ ]]; then
+            path="${BASH_REMATCH[1]}"
+            depth="${BASH_REMATCH[2]}"
+        else
+            path="$entry"
+            depth=""
+        fi
+        [[ -d "$path" ]] && find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" -path '*/.git' -prune -o -type d -print
+    done
+}
+
+output=""
+if [[ $1 == --output ]]; then
+    output=$2
+    shift 2
+fi
+
+if [[ $# -eq 1 ]]; then
+    selected="$1"
+else
+    selected=$(find_dirs | fzf)
+fi
+[[ -n $selected ]] || exit 0
+
+if [[ "$selected" =~ ^\[REX\]\ (.+)$ ]]; then
+    session_id=$(session_id_for "${BASH_REMATCH[1]}")
+else
+    selected_name=$(basename "$selected" | tr . _)
+    session_id=$(session_id_for "$selected_name")
+    if [[ -z $session_id ]]; then
+        session_id=$("$REX" new "$selected_name" -c "$selected" --json | jq -r '.session_id')
+        hydrate "$session_id" "$selected"
+    fi
+fi
+
+[[ -n $session_id && $session_id != null ]] || { echo "Could not find or create session"; exit 1; }
+if [[ -n $output ]]; then
+    printf '%s\n' "$session_id" > "$output"
+    exit 0
+fi
+
+if ! "$REX" do session.select session_id="$session_id" >/dev/null; then
+    # keep the popup open so the error can be read
+    read -rsn1 -p "Press any key to close"
+    exit 1
+fi

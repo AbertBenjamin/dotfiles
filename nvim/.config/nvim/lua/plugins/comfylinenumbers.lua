@@ -18,3 +18,22 @@ require('comfy-line-numbers').setup({
   hidden_file_types = { 'undotree' },
   hidden_buffer_types = { 'terminal' },
 })
+
+-- comfy-line-numbers sets statuscolumn on every window; keep it off where
+-- numbers are disabled (e.g. diffbandit panes)
+local function clear_numberless_statuscolumn()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if not vim.wo[win].number and not vim.wo[win].relativenumber then
+      vim.wo[win].statuscolumn = ""
+    end
+  end
+end
+
+vim.api.nvim_create_autocmd(
+  { "WinNew", "BufWinEnter", "BufEnter", "TermOpen", "InsertEnter", "InsertLeave", "FileType" },
+  { callback = clear_numberless_statuscolumn }
+)
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = { "number", "relativenumber" },
+  callback = clear_numberless_statuscolumn,
+})

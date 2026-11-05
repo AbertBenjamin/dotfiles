@@ -2,6 +2,12 @@ export EDITOR="nvim"
 export GH_EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 
+# fzf: ctrl+t files / alt+c dirs, respects .gitignore, with preview
+export FZF_CTRL_T_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:300 {}'"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_ALT_C_OPTS="--preview 'ls -la {}'"
+
 # Kubernetes
 export KUBECONFIG="$HOME/.kube/config"
 
