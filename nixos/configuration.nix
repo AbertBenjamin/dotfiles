@@ -393,7 +393,6 @@ networking.hostName = "nixos"; # Define your hostname.
        waybar
        wofi
        yazi
-       tmux
        stow
        git
        git-lfs
@@ -581,7 +580,7 @@ networking.hostName = "nixos"; # Define your hostname.
   GTK_THEME = "Adwaita:dark";
   GTK_IM_MODULE = "simple";
     # NixOS setter EDITOR=nano som standard i /etc/set-environment. Uten disse
-    # to fikk du nano i et friskt terminalvindu og nvim inne i tmux.
+    # to fikk du nano i et friskt terminalvindu.
     EDITOR = "nvim";
     VISUAL = "nvim";
   QT_STYLE_OVERRIDE = "adwaita-dark";

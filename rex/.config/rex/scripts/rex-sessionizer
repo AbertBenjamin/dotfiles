@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-# Rex port of tmux-sessionizer: pick a project dir (or an existing session)
+# Pick a project dir (or an existing session)
 # with fzf, create a Rex session for it if needed, and switch the app to it.
 # With --output FILE the chosen session id is written to FILE instead, so the
 # ctrl+space f binding in init.lua can switch the app itself (client actions
 # from scripts need Remote Control, key bindings don't).
-# Reads the same config as tmux-sessionizer:
-#   ~/.config/tmux-sessionizer/tmux-sessionizer.conf (TS_SEARCH_PATHS, TS_EXTRA_SEARCH_PATHS, TS_MAX_DEPTH)
+# Optional config: ~/.config/rex/sessionizer.conf
+#   TS_SEARCH_PATHS=(~/ ~/github)          # replaces the default search paths
+#   TS_EXTRA_SEARCH_PATHS=(~/work:3)       # added to them; :N sets the depth
+#   TS_MAX_DEPTH=2                         # default depth (1)
+# A .rex-sessionizer file in the project (or ~) is sourced in new sessions.
 
-CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-sessionizer/tmux-sessionizer.conf"
+CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/rex/sessionizer.conf"
 if [[ -f "$CONFIG_FILE" ]]; then
     # shellcheck source=/dev/null
     source "$CONFIG_FILE"
@@ -39,7 +42,7 @@ session_id_for() {
 
 hydrate() {
     local session_id=$1 dir=$2 block file
-    for file in "$dir/.rex-sessionizer" "$dir/.tmux-sessionizer" "$HOME/.rex-sessionizer" "$HOME/.tmux-sessionizer"; do
+    for file in "$dir/.rex-sessionizer" "$HOME/.rex-sessionizer"; do
         if [[ -f "$file" ]]; then
             block=$("$REX" block ls -s "$session_id" --json 2>/dev/null | jq -r '.. | .block_id? // empty' | head -1)
             [[ -n "$block" ]] || return

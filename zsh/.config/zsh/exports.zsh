@@ -37,6 +37,7 @@ export MAVEN_HOME=$HOME/.sdkman/candidates/maven/current
 # Prepend custom paths to PATH (in reverse order since we're prepending)
 path=("/Applications/IntelliJ IDEA.app/Contents/MacOS" $path)
 path=("$HOME/Library/Application Support/JetBrains/Toolbox/scripts" $path)
-path=("$HOME/.config/tmux/scripts" $path)
+path=("$HOME/.config/rex/scripts" $path)
+path=("/Applications/Rex Beta.app/Contents/Helpers/Rex Server.rex/Contents/MacOS"(N) $path)
 path=("$HOME/go/bin" $path)
 

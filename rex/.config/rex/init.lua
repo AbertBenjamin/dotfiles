@@ -1,4 +1,4 @@
--- Migrated from ~/.config/tmux/tmux.conf (prefix ctrl+space)
+-- Rex keybindings (prefix ctrl+space)
 
 local terminal = "com.superlogical.terminal"
 
@@ -15,7 +15,7 @@ rex.bind("ctrl+space>j", "pane.focus", { direction = "down" })
 rex.bind("ctrl+space>k", "pane.focus", { direction = "up" })
 rex.bind("ctrl+space>l", "pane.focus", { direction = "right" })
 
--- Vim-aware pane focus (like vim-tmux-navigator): when (n)vim is in the
+-- Vim-aware pane focus: when (n)vim is in the
 -- foreground the key goes to it, and nvim hands focus back to Rex at its edge
 -- via `rex api call session.focus_direction`
 local vim_keys = { -- ctrl+h/j/k/l as CSI u, which nvim always understands
@@ -49,7 +49,7 @@ rex.bind("ctrl+j", "smart_focus", { direction = "down" })
 rex.bind("ctrl+k", "smart_focus", { direction = "up" })
 rex.bind("ctrl+l", "smart_focus", { direction = "right" })
 
--- Sessionizer in a floating pane (like tmux display-popup). The script writes
+-- Sessionizer in a floating pane. The script writes
 -- the chosen session id to a file; once the popup closes we switch to it here,
 -- since client actions queued from a key binding don't need Remote Control.
 rex.bind("ctrl+space>f", function(ctx)
@@ -63,7 +63,7 @@ rex.bind("ctrl+space>f", function(ctx)
         flavor = "com.superlogical.terminal.shell",
         label = "sessionizer",
         options = {
-          command = { os.getenv("HOME") .. "/dotfiles/rex/.config/rex/scripts/rex-sessionizer", "--output", out },
+          command = { os.getenv("HOME") .. "/.config/rex/scripts/rex-sessionizer", "--output", out },
         },
       },
     },

@@ -12,7 +12,9 @@ keymap('n', '<leader>a', ':BlameToggle<CR>', opts)
 keymap("n", "<C-n>", function()
   require("fyler").toggle({ kind = "split_left_most" })
 end, opts)
-keymap("n", "<leader>t", ":silent !tmux split-window -h<CR>", opts)
+keymap("n", "<leader>t", function()
+  vim.system({ vim.g.rex_bin, "split", "-s", vim.env.REX_SESSION, "-b", vim.env.REX_BLOCK, "--split=right" })
+end, opts)
 
 -- buffers
 keymap('n', "<leader>n", ":bnext<CR>", opts)

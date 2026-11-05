@@ -15,7 +15,6 @@ karabiner/.config/karabiner/automatic_backups/*
 # ignore generated plugins
 **/lazy-lock.json
 **/zsh/plugins/*
-**/tmux/plugins/*
 
 
 
