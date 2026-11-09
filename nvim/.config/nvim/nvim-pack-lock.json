@@ -37,16 +37,12 @@
       "rev": "f79aaaba7b94e7769579f7e92022c534c060c455",
       "src": "https://github.com/AbertBenjamin/darculasolid.nvim"
     },
-    "dbext.vim": {
-      "rev": "14f3d530b6189dc3f97edfa70b7a36006e21148c",
-      "src": "https://github.com/vim-scripts/dbext.vim"
-    },
     "detekt.nvim": {
       "rev": "fdb832b4ef8a9811cf480d46bf84293825aa11bd",
       "src": "https://github.com/nielsdekker/detekt.nvim"
     },
     "diffbandit.nvim": {
-      "rev": "1acb4a55457535be9ab79ab1e90197366e38f2a2",
+      "rev": "1897aea7a970b49f0687617a16bcea1f53290fbc",
       "src": "https://github.com/CoreyKaylor/diffbandit.nvim"
     },
     "fff.nvim": {
@@ -87,7 +83,7 @@
       "src": "https://github.com/ray-x/lsp_signature.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "3a5cd6d562a01f6829a35ae761dc383264ea452b",
+      "rev": "55eceab8975036ac43a4176cbfe0d4bf1ddae93f",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason-tool-installer.nvim": {
@@ -162,10 +158,6 @@
       "rev": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6",
       "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
     },
-    "nvim-dbee": {
-      "rev": "dda517694889a5d238d7aa407403984da9f80cc0",
-      "src": "https://github.com/kndndrj/nvim-dbee"
-    },
     "nvim-jdtls": {
       "rev": "77ccaeb422f8c81b647605da5ddb4a7f725cda90",
       "src": "https://github.com/mfussenegger/nvim-jdtls"
@@ -175,7 +167,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "cc404d425c7752f56b8eaa269107be44d888ea51",
+      "rev": "993d048db0d83d8e8ba3f9cb376456321acdcce3",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -193,6 +185,10 @@
     "nvim-surround": {
       "rev": "61319d4bd1c5e336e197defa15bd104c51f0fb29",
       "src": "https://github.com/kylechui/nvim-surround"
+    },
+    "nvim-tmux-navigation": {
+      "rev": "4898c98702954439233fdaf764c39636681e2861",
+      "src": "https://github.com/alexghergh/nvim-tmux-navigation"
     },
     "nvim-treesitter": {
       "rev": "610734c5d3e59761d5f79318d120633374537fa5",
@@ -241,6 +237,18 @@
     "undotree": {
       "rev": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d",
       "src": "https://github.com/mbbill/undotree"
+    },
+    "vim-dadbod": {
+      "rev": "6d1d41da4873a445c5605f2005ad2c68c99d8770",
+      "src": "https://github.com/tpope/vim-dadbod"
+    },
+    "vim-dadbod-completion": {
+      "rev": "8c65c6b02e8434e5360fc78097e489c05e899697",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-completion"
+    },
+    "vim-dadbod-ui": {
+      "rev": "afd07819d8efcefc3317205b855ad4e3513b0011",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
     }
   }
 }

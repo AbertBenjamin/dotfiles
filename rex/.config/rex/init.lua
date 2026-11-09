@@ -49,6 +49,24 @@ rex.bind("ctrl+j", "smart_focus", { direction = "down" })
 rex.bind("ctrl+k", "smart_focus", { direction = "up" })
 rex.bind("ctrl+l", "smart_focus", { direction = "right" })
 
+-- Database UI (vim-dadbod-ui) in a floating pane. Runs through an interactive
+-- zsh so DB_UI_* / DATABASE_URL from the shell config are available.
+rex.bind("ctrl+space>d", function(ctx)
+  rex.call("session.new_layer", {
+    session_id = ctx.session_id,
+    bounds = { 0.05, 0.05, 0.9, 0.9 },
+    focus = true,
+    layout = {
+      block = {
+        flavor = "com.superlogical.terminal.shell",
+        label = "dbui",
+        options = { command = { "zsh", "-ic", "nvim +DBUI" } },
+      },
+    },
+  })
+  return true
+end)
+
 -- Sessionizer in a floating pane. The script writes
 -- the chosen session id to a file; once the popup closes we switch to it here,
 -- since client actions queued from a key binding don't need Remote Control.
