@@ -1,0 +1,2 @@
+# nixos/ er systemkonfig (flake), ikke dotfiles: la stow ignorere alt her
+.*

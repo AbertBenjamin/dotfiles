@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Kobler FootCtrlPlus til «Midi Through» når pedalen dukker opp. Pedalens klientnummer
+# endres ved hver tilkobling, og REAPER finner bare enheter som fantes ved oppstart;
+# «Midi Through» finnes alltid, så REAPER kan peke dit permanent.
+set -u
+PEDAL_NAVN="FootCtrlPlus"
+THROUGH_NAVN="Midi Through"
+
+while true; do
+  p=$(aconnect -l 2>/dev/null | grep -i "client.*$PEDAL_NAVN" | sed -E 's/client ([0-9]+).*/\1/')
+  t=$(aconnect -l 2>/dev/null | grep -i "client.*$THROUGH_NAVN" | sed -E 's/client ([0-9]+).*/\1/')
+  if [ -n "$p" ] && [ -n "$t" ]; then
+    # allerede koblet?
+    if ! aconnect -l 2>/dev/null | awk -v p="client $p:" '$0 ~ p {f=1} f && /Connecting To:/ {print; exit}' | grep -q "\b$t:0\b"; then
+      aconnect "$p:0" "$t:0" 2>/dev/null && echo "koblet $PEDAL_NAVN ($p:0) -> $THROUGH_NAVN ($t:0)"
+    fi
+  fi
+  sleep 3
+done

@@ -1,0 +1,77 @@
+[
+    (
+        output: (
+            name: "DP-2",
+            edid: Some((
+                manufacturer: ('A', 'U', 'S'),
+                product: 10221,
+                serial: Some(16843009),
+                manufacture_week: 45,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: false,
+        id: Some("afe783"),
+    ),
+    (
+        output: (
+            name: "DP-2",
+            edid: Some((
+                manufacturer: ('A', 'U', 'S'),
+                product: 10221,
+                serial: Some(16843009),
+                manufacture_week: 45,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: false,
+        id: Some("17787ca"),
+    ),
+    (
+        output: (
+            name: "DP-2",
+            edid: Some((
+                manufacturer: ('A', 'U', 'S'),
+                product: 10221,
+                serial: Some(16843009),
+                manufacture_week: 45,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: false,
+        id: Some("87c640"),
+    ),
+    (
+        output: (
+            name: "DP-2",
+            edid: Some((
+                manufacturer: ('A', 'U', 'S'),
+                product: 10221,
+                serial: Some(16843009),
+                manufacture_week: 45,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+        id: Some("1abbdaa"),
+    ),
+    (
+        output: (
+            name: "DP-2",
+            edid: Some((
+                manufacturer: ('A', 'U', 'S'),
+                product: 10221,
+                serial: Some(16843009),
+                manufacture_week: 45,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+        id: Some("12fbbe7"),
+    ),
+]
