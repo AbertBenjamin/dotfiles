@@ -1,5 +1,6 @@
 require "vimrc"
 require "keymap.keymap"
+require "compile"
 require "plugins.darculasolid"
 require "plugins.autopairs"
 require "plugins.blame"

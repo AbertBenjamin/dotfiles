@@ -80,14 +80,15 @@ keymap("n", "K", function()
     hover()
   end
 end, {})
-keymap("n", "gd", vim.lsp.buf.definition, {})
-keymap("n", "gD", vim.lsp.buf.declaration, {})
-keymap("n", "gr", vim.lsp.buf.references, opts)
-keymap("n", "grr", vim.lsp.buf.references, opts)
+keymap("n", "gd", fn.lsp_pick(vim.lsp.buf.definition, true), {})
+keymap("n", "gD", fn.lsp_pick(vim.lsp.buf.declaration), {})
+keymap("n", "gr", fn.lsp_pick(fn.references), opts)
+keymap("n", "grr", fn.lsp_pick(fn.references), opts)
 keymap("n", "<leader>rn", vim.lsp.buf.rename, {})
 
 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 keymap("n", "<leader>cf", vim.lsp.buf.format)
+keymap("n", "<leader>cc", function() require("compile").compile() end, { desc = "Compile project" })
 
 -- Diagnostic navigation: jump to next error, or fallback to warning
 keymap('n', '<leader>s', function() fn.jump_diag("next") end, { desc = "Next Error/Warning", unpack(opts) })

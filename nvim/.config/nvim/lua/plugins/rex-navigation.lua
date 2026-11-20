@@ -10,20 +10,59 @@ vim.g.rex_bin = rex_bin
 
 local rex_dirs = { h = "left", j = "down", k = "up", l = "right" }
 
--- wincmd also enters non-focusable windows (diffbandit gutters/number panes),
--- so skip past them and hand over to Rex if no focusable window is found
+-- diffbandit reuses the original window as its left header, so it stays
+-- focusable even though diffbandit bounces focus out of it
+local function is_diffbandit_header(win)
+  local ok, state = pcall(require, "diffbandit.state")
+  local session = ok and state.sessions[vim.api.nvim_get_current_tabpage()]
+  if not session then return false end
+  for key, value in pairs(session) do
+    if value == win and type(key) == "string" and key:match("header_win$") then return true end
+  end
+  return false
+end
+
+-- Find the nearest focusable window in a direction from its screen position,
+-- without entering anything on the way: diffbandit bounces focus to the
+-- opposite pane whenever one of its non-focusable helper windows (gutters,
+-- overview, headers) is entered, and winnr()/wincmd don't reach past them.
+local function neighbor(dir)
+  local cur = vim.api.nvim_get_current_win()
+  local top, left = unpack(vim.fn.win_screenpos(cur))
+  local width, height = vim.api.nvim_win_get_width(cur), vim.api.nvim_win_get_height(cur)
+  local row, col = top + vim.fn.winline() - 1, left + vim.fn.wincol() - 1
+  local best, best_dist
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local cfg = vim.api.nvim_win_get_config(win)
+    if win ~= cur and cfg.relative == "" and cfg.focusable ~= false and not is_diffbandit_header(win) then
+      local r, c = unpack(vim.fn.win_screenpos(win))
+      local w, h = vim.api.nvim_win_get_width(win), vim.api.nvim_win_get_height(win)
+      local dist
+      if dir == "h" and c + w <= left and r <= row and row < r + h then
+        dist = left - (c + w)
+      elseif dir == "l" and c >= left + width and r <= row and row < r + h then
+        dist = c - (left + width)
+      elseif dir == "k" and r + h <= top and c <= col and col < c + w then
+        dist = top - (r + h)
+      elseif dir == "j" and r >= top + height and c <= col and col < c + w then
+        dist = r - (top + height)
+      end
+      if dist and (not best_dist or dist < best_dist) then
+        best, best_dist = win, dist
+      end
+    end
+  end
+  return best
+end
+
+-- Hand over to Rex when there is no window in that direction
 local function navigate(dir)
   return function()
-    local start = vim.api.nvim_get_current_win()
-    local prev = start
-    while true do
-      vim.cmd("wincmd " .. dir)
-      local cur = vim.api.nvim_get_current_win()
-      if cur == prev then break end
-      if vim.api.nvim_win_get_config(cur).focusable ~= false then return end
-      prev = cur
+    local win = neighbor(dir)
+    if win then
+      vim.api.nvim_set_current_win(win)
+      return
     end
-    vim.api.nvim_set_current_win(start)
     if vim.env.REX_SESSION and vim.fn.executable(rex_bin) == 1 then
       vim.system({
         rex_bin, "api", "call", "-s", vim.env.REX_SESSION, "session.focus_direction",

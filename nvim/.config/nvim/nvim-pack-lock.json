@@ -18,7 +18,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "codediff.nvim": {
-      "rev": "09d9ebef2cc5a5c04db7a349cd6c61bdf84ecc8e",
+      "rev": "eee54e78e6f152a6eb03b090e95f7576c96a5ad9",
       "src": "https://github.com/esmuellert/codediff.nvim"
     },
     "comfy-line-numbers.nvim": {
@@ -42,11 +42,11 @@
       "src": "https://github.com/nielsdekker/detekt.nvim"
     },
     "diffbandit.nvim": {
-      "rev": "1897aea7a970b49f0687617a16bcea1f53290fbc",
+      "rev": "c315e593a29660a81b61365b1cfd863a5bf4b1f0",
       "src": "https://github.com/CoreyKaylor/diffbandit.nvim"
     },
     "fff.nvim": {
-      "rev": "b3b8cede0beb95272ebc2c72c648269f9c5228b3",
+      "rev": "ab3002a9bfbef53874dd0b56608e34d281791b4c",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "flash.nvim": {
@@ -62,15 +62,15 @@
       "src": "https://github.com/A7Lavinraj/fyler.nvim"
     },
     "fzf-lua": {
-      "rev": "11357ee24a9f092b1db503237eb57e2a11e48434",
+      "rev": "a8312697c30b4d3b110fa3dc56e3699107aed9a0",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "ef707fb93301a9b856f36eae4c8f56f5b988a794",
+      "rev": "c0862d382a35b7b45757d8d151a6a634c09bf3ce",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "kotlin.nvim": {
-      "rev": "bc8ed5523db7e0ec2c00e26a17858e4c54d86072",
+      "rev": "1082a1570138fd97f0ad3f28f0f9e830b1989c9e",
       "src": "https://github.com/AlexandrosAlexiou/kotlin.nvim"
     },
     "lensline.nvim": {
@@ -83,7 +83,7 @@
       "src": "https://github.com/ray-x/lsp_signature.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "55eceab8975036ac43a4176cbfe0d4bf1ddae93f",
+      "rev": "761d376b5fbe6b21f659432ffadc1205c660176c",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason-tool-installer.nvim": {
@@ -99,19 +99,19 @@
       "src": "https://github.com/kevalin/mermaid.nvim"
     },
     "mini.ai": {
-      "rev": "a4f5648dedf435e6306205135d1babb563b55d28",
+      "rev": "c2e6e88a9de01b5aec5c3cffee1277b9ac8a6d69",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.files": {
-      "rev": "6ac1d7f5c9e6a196c75cf6f1ea8055cef4ac9bbf",
+      "rev": "52b6a0ff498edd0755c71c3476b30ba07798989a",
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "mini.icons": {
-      "rev": "eab3e692d796d78ea6ffc978d8a380ff26fcf4e3",
+      "rev": "fc90b3925a2a68282be06e28cfe0cbb366c75dad",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.statusline": {
-      "rev": "d7133a9a244a8d93ccee42ff37fb9499af5956fb",
+      "rev": "591b9d553dc3604b114577bc0f6e289ea3783fc2",
       "src": "https://github.com/nvim-mini/mini.statusline"
     },
     "neotest": {
@@ -167,7 +167,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "993d048db0d83d8e8ba3f9cb376456321acdcce3",
+      "rev": "4648fd8ba5c678d7e2db75ae44ffac269bb589d8",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -179,7 +179,7 @@
       "src": "https://github.com/sitiom/nvim-numbertoggle"
     },
     "nvim-scrollbar": {
-      "rev": "00fe857e7cd97ee5e556de643ee920b003a96b03",
+      "rev": "49c3d25d8d799754438fdcbe426072ff194fb7c8",
       "src": "https://github.com/petertriho/nvim-scrollbar"
     },
     "nvim-surround": {
@@ -191,7 +191,7 @@
       "src": "https://github.com/alexghergh/nvim-tmux-navigation"
     },
     "nvim-treesitter": {
-      "rev": "610734c5d3e59761d5f79318d120633374537fa5",
+      "rev": "37e52c733ada9d8d544d53a763140ef1ba404353",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -223,7 +223,7 @@
       "src": "https://github.com/hiphish/rainbow-delimiters.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "8e8795368391036643b622875a6da6a51bcd33f4",
+      "rev": "a67f826164c38c836fc6060f32b275c4c43317a7",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "snacks.nvim": {

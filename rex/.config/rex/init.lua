@@ -12,8 +12,24 @@ rex.bind("ctrl+space>o", "session.previous")
 rex.bind("ctrl+space>i", "session.next")
 rex.bind("ctrl+space>h", "pane.focus", { direction = "left" })
 rex.bind("ctrl+space>j", "pane.focus", { direction = "down" })
-rex.bind("ctrl+space>k", "pane.focus", { direction = "up" })
 rex.bind("ctrl+space>l", "pane.focus", { direction = "right" })
+
+-- hjkl instead of the arrow keys in Rex's default pane shortcuts
+local hjkl = { left = "h", down = "j", up = "k", right = "l" }
+for direction, key in pairs(hjkl) do
+  rex.unbind("shift+cmd+" .. direction)
+  rex.unbind("alt+cmd+" .. direction)
+  rex.unbind("alt+shift+cmd+" .. direction)
+  rex.bind("shift+cmd+" .. key, "pane.split", { direction = direction })
+  rex.bind("alt+cmd+" .. key, "pane.focus", { direction = direction })
+  rex.bind("alt+shift+cmd+" .. key, "pane.move", { direction = direction })
+end
+
+-- Jump between shell prompts (cmd+k is the session switcher)
+rex.unbind("cmd+up")
+rex.unbind("cmd+down")
+rex.bind("ctrl+cmd+k", "client.prompt.previous")
+rex.bind("ctrl+cmd+j", "client.prompt.next")
 
 -- Vim-aware pane focus: when (n)vim is in the
 -- foreground the key goes to it, and nvim hands focus back to Rex at its edge
@@ -61,6 +77,27 @@ rex.bind("ctrl+space>d", function(ctx)
         flavor = "com.superlogical.terminal.shell",
         label = "dbui",
         options = { command = { "zsh", "-ic", "nvim +DBUI" } },
+      },
+    },
+  })
+  return true
+end)
+
+-- Copy mode à la tmux: the pane's screen and scrollback opened read-only in
+-- nvim in a floating pane. Yanks go to the system clipboard (unnamedplus).
+rex.bind("ctrl+space>k", function(ctx)
+  if not ctx.block_id then return false end
+  local cmd = "rex capture -b " .. ctx.block_id .. " --trim --unwrap"
+    .. " | nvim -R -c 'setlocal buftype=nofile nomodified' -c 'nnoremap <buffer> q <cmd>q!<cr>' -c 'normal! G' -"
+  rex.call("session.new_layer", {
+    session_id = ctx.session_id,
+    bounds = { 0.05, 0.05, 0.9, 0.9 },
+    focus = true,
+    layout = {
+      block = {
+        flavor = "com.superlogical.terminal.shell",
+        label = "copy-mode",
+        options = { command = { "zsh", "-ic", cmd } },
       },
     },
   })
